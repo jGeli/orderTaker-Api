@@ -1,0 +1,27 @@
+{
+  "name": "ordertaker-api",
+  "version": "1.0.0",
+  "description": "Order Taker API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jGeli/orderTaker-Api.git"
+  },
+  "author": "John Benedict Geli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jGeli/orderTaker-Api/issues"
+  },
+  "homepage": "https://github.com/jGeli/orderTaker-Api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.3"
+  }
+}
