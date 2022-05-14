@@ -14,6 +14,10 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
+
+
+
 const dbConfig = require('./app/config/db.config');
 const db = require("./app/schemas");
 const Role = db.role;
@@ -66,7 +70,7 @@ function initial() {
 
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ message: "Welcome to alayon order taker application."});
 });
 
