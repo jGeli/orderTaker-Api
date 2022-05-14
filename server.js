@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const dbConfig = require('./app/config/db.config');
-const db = require("./app/schemas");
+const db = require("./app/models");
 const Role = db.role;
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {

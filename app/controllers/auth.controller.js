@@ -1,5 +1,5 @@
 const config = require("../config/auth.config");
-const db = require("../schemas");
+const db = require("../models");
 const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
@@ -95,3 +95,10 @@ exports.signin = (req, res) => {
       });
     });
 };
+
+
+exports.getAuthUser = (req, res) => {
+  let { userId } = req;
+    console.log(userId)
+    res.status(200).json({message: 'Success', userId})
+}
