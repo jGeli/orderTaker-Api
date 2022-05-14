@@ -4,5 +4,6 @@ const db = {};
 db.mongoose = mongoose;
 db.user = require("./user.schema");
 db.role = require("./role.schema");
+db.userProfile = require('./userProfile.schema');
 db.ROLES = ["user", "admin", "moderator"];
 module.exports = db;

@@ -5,12 +5,11 @@ const User = mongoose.model(
     username: String,
     email_address: String,
     password: String,
-    isVerified: Boolean,
-    isBlock: Boolean,
     dpUrl: String,
     notes: String,
     isDeleted: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
+    isBlock: { type: Boolean, default: false },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
