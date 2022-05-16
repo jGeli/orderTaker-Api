@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const dbConfig = require('./app/config/db.config');
 const db = require("./app/models");
-const Role = db.role;
+const Role = db.roles;
 
 db.mongoose
   .connect(process.env.MONGO_URL, {
@@ -80,6 +80,7 @@ app.get("/api", (req, res) => {
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/role.routes')(app);
 
 
 

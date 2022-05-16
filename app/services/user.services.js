@@ -1,21 +1,41 @@
 const db = require('../models');
 
-const User = db.user;
-
-
+const User = db.users;
 
 class UserServices{
+
+    static async createRecord(prop){
+        const { title, notes } = prop
+
+        let resp =  await User.create({ title, notes });
+        return resp
+  }
+
+  static async updateRecord(id){
+    let resp = await User.findByIdAndUpdate(id, { isDeleted: true });
+    return resp;
+}
+
+
         
-   static async getAll(){
-          let users =  await User.find({});
-
-          return users
+   static async getAll(prop = {}){
+          let resp =  await User.find({ ...prop, isDeleted: false });
+          return resp
     }
+
     static async getById(id){
-        let user = await User.findById(id);
-        return user;
+        try{
+            let resp = await User.findById(id);
+            return resp;
+        } catch(err){
+            return false
+        }
     }
 
+    static async deleteRecord(id){
+        let resp = await User.findByIdAndUpdate(id, { isDeleted: true });
+        return resp;
+    }
 }
 
 

@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const order = mongoose.model(
-    "Orders",
+    "orders",
     new mongoose.Schema({
         description: String,
         order_no: String,
-        order_item: {
+        order_item: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Order_Items"
-        },
+        ref: "order_Items"
+        }],
         total_ammount: String,
         isPaid: {
             type: Boolean,

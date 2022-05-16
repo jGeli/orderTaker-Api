@@ -12,7 +12,7 @@ const order_item = mongoose.model(
             default: false
         }
     },
-        { timestamps: true }
+    { timestamps: true }
     )
     
 );

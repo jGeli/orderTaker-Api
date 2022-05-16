@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const customer = mongoose.model(
-    "Customer",
+    "customers",
     new mongoose.Schema({
         firstName: String,
         lastName: String,

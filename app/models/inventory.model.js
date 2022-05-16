@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const inventory = mongoose.model(
-    "Inventories",
+    "inventories",
     new mongoose.Schema({
         product_id: String,
-        purchases: {
+        purchases: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Purchases"
-        },
+            ref: "purchases"
+        }],
         description: String,
         inStocks: String,
         price: String,
@@ -18,6 +18,5 @@ const inventory = mongoose.model(
     },
         { timestamps: true }
     )
-    
 );
 module.exports = inventory;

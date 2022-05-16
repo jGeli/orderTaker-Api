@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const payment = mongoose.model(
-    "Payments",
+    "payments",
     new mongoose.Schema({
         order_id: String,
         customer_id: String,

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model(
-  "User",
+  "users",
   new mongoose.Schema({
     username: String,
     email_address: String,
@@ -13,25 +13,21 @@ const User = mongoose.model(
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Roles"
+        ref: "roles"
       }
     ],
-    userProfile: [
-       {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "UserProfile"
-       }
-     ],
+    notifications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "notifcations"
+      }
+    ],
     business: [
       {
-         type: mongoose.Schema.Types.ObjectId,         ref: "Business"
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "businesses"
       }
-     ],
-    notofications: [
-      {
-        type: mongoose.Schema.Types.ObjectId, ref: "Notifications"
-      }
-    ]
+     ]
   },
     { timestamps: true }
   )

@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const products = mongoose.model(
-    "Products",
+    "products",
     new mongoose.Schema({
         name: String,
         description: String,
         type: String,
-        categories: {
+        categories: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Categories"
-        },
+            ref: "categories"
+        }],
         notes: String,
         isDeleted: {
          type: Boolean, 
