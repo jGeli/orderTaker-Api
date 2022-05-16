@@ -21,8 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 const dbConfig = require('./app/config/db.config');
 const db = require("./app/models");
 const Role = db.role;
+
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb://localhost:27017`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -85,7 +86,7 @@ require('./app/routes/role.routes')(app);
 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 27012;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

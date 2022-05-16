@@ -29,31 +29,28 @@ const business = mongoose.model(
         orders: [
         {
          type: mongoose.Schema.Types.ObjectId,
-         ref: "Order"
+         ref: "Orders"
         },
          ],
         purchases: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Purchases"
-            }
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Purchases"
+        }
         ],
         payments: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Payment"
-            }
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Payments"
+        }
         ], 
         customers: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Customer"
-            }
-        ],
-        
-      
-
-    })
-   
+        {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Customers"
+        }
+        ],       
+    }
+        )    
 );
 module.exports = business;

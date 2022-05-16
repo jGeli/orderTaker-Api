@@ -15,7 +15,8 @@ const inventory = mongoose.model(
             type: Boolean,
             default: false
         }
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )
 );
 module.exports = inventory;

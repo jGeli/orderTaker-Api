@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const payment = mongoose.model(
-    "Payment",
+    "Payments",
     new mongoose.Schema({
         order_id: String,
         customer_id: String,
@@ -13,7 +13,9 @@ const payment = mongoose.model(
             type: Boolean,
             default: false
         }
-    }),
-    { timestamps: true },
+    },
+    { timestamps: true }
+    )
+    
 );
 module.exports = payment;

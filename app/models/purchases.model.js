@@ -14,7 +14,9 @@ const purchases = mongoose.model(
             default: false
         }
 
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )
+    
 );
 module.exports = purchases;
