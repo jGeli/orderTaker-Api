@@ -8,8 +8,10 @@ const RoleServices = require('../services/role.services');
     res.status(200).json({message: "Created Successfully", data: resp});
   };
 
-  exports.handleGetById = (req, res) => {
-    res.status(200).send("User Content.");
+  exports.handleGetById = async (req, res) => {
+    let { id } = req.params;
+      resp = await RoleServices.getById(id);
+    res.status(200).json({message: "Fetch Success", data: resp});
   };
 
   exports.handleGetAll = async (req, res) => {
@@ -17,16 +19,22 @@ const RoleServices = require('../services/role.services');
     res.status(200).json({message: "Fetch Successfully", data: resp});
   };
 
-  exports.handleDeleteById = (req, res) => {
-    res.status(200).send("Moderator Content.");
+  exports.handleDeleteById = async (req, res) => {
+    let { id } = req.params;
+    let resp = await RoleServices.deleteRecord(id)
+
+
+    res.status(200).json({message: "Deleted Successfully", data: resp});
   };
 
 
-  exports.handleUpdate = async (req, res) => {
-      try{
-          let users = await UserService.getAll();
-          res.status(200).json({count: users.length, users})
-      }catch(err) {
+  exports.handleUpdateById = async (req, res) => {
+    let { id } = req.params;
+
+    try{
+          let resp = await RoleServices.updateRecord(id, req.body);
+          res.status(200).json({message: "Updated Successfully", data: resp});
+        }catch(err) {
         console.log(err)
         res.status(400).json({message: 'Something went wrong!'})
       }

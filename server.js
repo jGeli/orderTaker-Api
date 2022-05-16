@@ -20,10 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 
 const dbConfig = require('./app/config/db.config');
 const db = require("./app/models");
-const Role = db.role;
+const Role = db.roles;
 
 db.mongoose
-  .connect(`mongodb://localhost:27017`, {
+  .connect(`mongodb://localhost:27017/order_taker`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })

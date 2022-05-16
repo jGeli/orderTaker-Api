@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-const user = mongoose.model(
-=======
 const User = mongoose.model(
->>>>>>> fcf88fd7352b3613e9f55b28e05af66c16f5bacb
-  "User",
+  "users",
   new mongoose.Schema({
     username: String,
     email_address: String,
@@ -17,42 +13,24 @@ const User = mongoose.model(
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Roles"
+        ref: "roles"
       }
     ],
     notifications: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Notifcation"
+        ref: "notifcations"
       }
     ],
     business: [
-<<<<<<< HEAD
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Business"
-        }
-    ]
-  })
-);
-
-
-
-module.exports = user;
-=======
       {
-         type: mongoose.Schema.Types.ObjectId,         ref: "Business"
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "businesses"
       }
-     ],
-    notofications: [
-      {
-        type: mongoose.Schema.Types.ObjectId, ref: "Notifications"
-      }
-    ]
+     ]
   },
     { timestamps: true }
   )
   
 );
 module.exports = User;
->>>>>>> fcf88fd7352b3613e9f55b28e05af66c16f5bacb

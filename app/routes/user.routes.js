@@ -1,4 +1,4 @@
-const { authJwt } = require("../middlewares");
+const { verifySignUp, authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -10,25 +10,25 @@ module.exports = function(app) {
   });
 
 
-  app.delete("/api/user/:id", controller.deleteUserById);
-
-
-  app.get("/api/users", controller.getAllUsers);
-  app.get("/api/user/:id", controller.getUserById);
-
-
-
-
-  app.get("/api/test/all", controller.allAccess);
-  app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
-  app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
+//Create
+  app.post(
+    "/api/users",
+    controller.handleCreate
   );
-  app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+
+//Update
+  app.patch(
+    "/api/user/:id",
+    controller.handleUpdateById
   );
-};  
+
+ //Get All or By Id
+  app.get("/api/users", controller.handleGetAll);
+  app.get("/api/user/:id", controller.handleGetById);
+  
+
+  //Delete
+  app.delete("/api/user/:id", controller.handleDeleteById);
+
+
+};

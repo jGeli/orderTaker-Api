@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const Role = db.role;
+const Role = db.roles;
 
 class RoleServices{
 
@@ -10,6 +10,12 @@ class RoleServices{
         let resp =  await Role.create({ title, notes });
         return resp
   }
+
+  
+  static async updateRecord(id, data = {}){
+    let resp = await Role.findByIdAndUpdate(id, { ...data });
+    return resp;
+}
 
 
         

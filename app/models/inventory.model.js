@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const inventory = mongoose.model(
-    "Inventories",
+    "inventories",
     new mongoose.Schema({
         product_id: String,
         purchases: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Purchases"
+            ref: "purchases"
         }],
         description: String,
         inStocks: String,

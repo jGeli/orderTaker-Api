@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const business = mongoose.model(
-    "Business",
+    "businesses",
     new mongoose.Schema({
         name: String,
         address: String,
@@ -20,36 +20,37 @@ const business = mongoose.model(
             type: Boolean,
             default: false
         },
-         inventory: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Inventories"
-        }
-         ],
-        orders: [
-        {
-         type: mongoose.Schema.Types.ObjectId,
-         ref: "Orders"
-        },
-         ],
         purchases: [
-        {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Purchases"
-        }
-        ],
-        payments: [
-        {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Payments"
-        }
-        ], 
-        customers: [
-        {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "Customers"
-        }
-        ],       
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "purchases"
+            }
+            ],
+        //  inventory: [
+        // {
+        //   type: mongoose.Schema.Types.ObjectId,
+        //   ref: "inventories"
+        // }
+        //  ],
+        // orders: [
+        // {
+        //  type: mongoose.Schema.Types.ObjectId,
+        //  ref: "orders"
+        // },
+        //  ],
+  
+        // payments: [
+        // {
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "payments"
+        // }
+        // ], 
+        // customers: [
+        // {
+        // type: mongoose.Schema.Types.ObjectId, 
+        // ref: "customers"
+        // }
+        // ],       
     }
         )    
 );

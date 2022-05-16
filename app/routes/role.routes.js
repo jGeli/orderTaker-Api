@@ -8,12 +8,27 @@ module.exports = function(app) {
     );
     next();
   });
+
+
+//Create
   app.post(
-    "/api/role",
+    "/api/roles",
     controller.handleCreate
   );
 
+//Update
+  app.patch(
+    "/api/role/:id",
+    controller.handleUpdateById
+  );
 
+ //Get All or By Id
   app.get("/api/roles", controller.handleGetAll);
+  app.get("/api/role/:id", controller.handleGetById);
+  
+
+  //Delete
+  app.delete("/api/role/:id", controller.handleDeleteById);
+
 
 };
