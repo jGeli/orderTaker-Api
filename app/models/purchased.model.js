@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const purchases = mongoose.model(
-    "purchases",
+const purchased = mongoose.model(
+    "purchased",
     new mongoose.Schema({
         poduct_id: String,
         qty: String,
@@ -19,4 +19,4 @@ const purchases = mongoose.model(
     )
     
 );
-module.exports = purchases;
+module.exports = purchased;

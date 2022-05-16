@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const inventory = mongoose.model(
     "inventories",
     new mongoose.Schema({
-        product_id: String,
+        
         purchases: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "purchases"
@@ -14,7 +14,12 @@ const inventory = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
+        },
+          product: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "product"
+            }]
     },
         { timestamps: true }
     )

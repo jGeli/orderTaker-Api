@@ -2,14 +2,14 @@ const db = require('../models');
 
 const User = db.users;
 
-class UserServices{
+class UserServices {
 
-    static async createRecord(prop){
-        const { title, notes } = prop
+    static async createRecord(prop) {
+        const { username, email_address, password,notes, role,notification, business } = prop
 
-        let resp =  await User.create({ title, notes });
+        let resp = await User.create({ username, email_address, password, notes, role, notification, business });
         return resp
-  }
+    }
 
   static async updateRecord(id){
     let resp = await User.findByIdAndUpdate(id, { isDeleted: true });

@@ -4,9 +4,14 @@ const role = mongoose.model(
   new mongoose.Schema({
     title: String,
     notes: String,
-    isDeleted: { 
-      type: Boolean, 
-      default: false }
-  })
+    isDeleted: {
+      type: Boolean,
+      default: false
+    }
+
+  },
+    { timestamps: true }
+  )
+
 );
 module.exports = role;

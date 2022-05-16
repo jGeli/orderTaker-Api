@@ -4,29 +4,30 @@ const order = mongoose.model(
     new mongoose.Schema({
         description: String,
         order_no: String,
-        order_item: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "order_Items"
-        }],
-        total_ammount: String,
+        total_amount: String,
+        recordedBy: String,
+        notes: String,
+        customer_id: String,
+        order_item: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "order_item"
+            }
+        ],
         isPaid: {
             type: Boolean,
-            default:false
+            default: false
         },
         isCompleted: {
             type: Boolean,
             default: false
         },
-        recordedBy: String,
-        notes: String,
         isDeleted: {
             type: Boolean,
             default: false
-        },
-        customer_id: String
-    },
-    { timestamps: true }
-    )
-    
+        }
+     
+
+    })
 );
 module.exports = order;

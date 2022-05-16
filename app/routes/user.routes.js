@@ -12,7 +12,7 @@ module.exports = function(app) {
 
 //Create
   app.post(
-    "/api/users",
+    "/api/user",
     controller.handleCreate
   );
 
