@@ -16,12 +16,12 @@ const User = mongoose.model(
         ref: "Role"
       }
     ],
-    // userProfile: [
-    //     {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: "UserProfile"
-    //     }
-    //   ],
+    notifications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Notifcation"
+      }
+    ]
     // business: [
     //     {
     //         type: mongoose.Schema.Types.ObjectId,

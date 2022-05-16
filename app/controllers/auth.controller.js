@@ -5,6 +5,8 @@ const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+const UserService = require('../services/user.services');
+
 
 
 exports.signup = (req, res) => {
@@ -21,7 +23,7 @@ exports.signup = (req, res) => {
     if (req.body.roles) {
       Role.find(
         {
-          name: { $in: req.body.roles }
+          title: { $in: req.body.roles }
         },
         (err, roles) => {
           if (err) {
@@ -97,8 +99,9 @@ exports.signin = (req, res) => {
 };
 
 
-exports.getAuthUser = (req, res) => {
+exports.getAuthUser = async (req, res) => {
   let { userId } = req;
     console.log(userId)
-    res.status(200).json({message: 'Success', userId})
+    let user = await UserService.getById(userId);
+    res.status(200).json({message: 'Success', userId, user})
 }

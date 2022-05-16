@@ -8,6 +8,17 @@ module.exports = function(app) {
     );
     next();
   });
+
+
+  app.delete("/api/user/:id", controller.deleteUserById);
+
+
+  app.get("/api/users", controller.getAllUsers);
+  app.get("/api/user/:id", controller.getUserById);
+
+
+
+
   app.get("/api/test/all", controller.allAccess);
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
   app.get(
