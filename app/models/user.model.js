@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = mongoose.model(
+const user = mongoose.model(
   "User",
   new mongoose.Schema({
     username: String,
@@ -21,13 +21,16 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Notifcation"
       }
+    ],
+    business: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Business"
+        }
     ]
-    // business: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "Business"
-    //     }
-    // ]
   })
 );
-module.exports = User;
+
+
+
+module.exports = user;

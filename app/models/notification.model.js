@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Notication = mongoose.model(
-  "Notication",
+const Notification = mongoose.model(
+  "Notification",
   new mongoose.Schema({
     title: String,
     content: String,
@@ -12,4 +12,4 @@ const Notication = mongoose.model(
     timestamps: { type: String, default: new Date }
   })
 );
-module.exports = Notication;
+module.exports = Notification;

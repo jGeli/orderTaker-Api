@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
-const Role = mongoose.model(
+const role = mongoose.model(
   "Role",
   new mongoose.Schema({
     title: String,
     notes: String,
-    isDeleted: { type: Boolean, default: false }
+    isDeleted: { 
+      type: Boolean, 
+      default: false }
   })
 );
-module.exports = Role;
+module.exports = role;
