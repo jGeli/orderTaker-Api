@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const purchased = mongoose.model(
-    "purchased",
+    "purchases",
     new mongoose.Schema({
         poduct_id: String,
         qty: String,
