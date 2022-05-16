@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const inventory = mongoose.model(
-    "inventory",
+    "Inventories",
     new mongoose.Schema({
         product_id: String,
         purchases: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "purchases"
+            ref: "Purchases"
         },
         description: String,
         inStocks: String,
@@ -15,7 +15,9 @@ const inventory = mongoose.model(
             type: Boolean,
             default: false
         }
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )
+    
 );
 module.exports = inventory;

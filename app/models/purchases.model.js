@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const purchases = mongoose.model(
-    "purchases",
+    "Purchases",
     new mongoose.Schema({
         poduct_id: String,
         qty: String,
@@ -14,7 +14,9 @@ const purchases = mongoose.model(
             default: false
         }
 
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )
+    
 );
 module.exports = purchases;

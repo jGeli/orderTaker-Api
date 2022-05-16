@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const category = mongoose.model(
-    "category",
+    "Categories",
     new mongoose.Schema({
         name: String,
         description: String,
@@ -9,7 +9,8 @@ const category = mongoose.model(
             type: Boolean,
             default: false
         }
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )  
 );
 module.exports = category;

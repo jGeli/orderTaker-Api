@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const order_item = mongoose.model(
-    "order_item",
+    "Order_items",
     new mongoose.Schema({
         inventory_id: String,
         qty: String,
@@ -11,7 +11,9 @@ const order_item = mongoose.model(
             type: Boolean,
             default: false
         }
-    }),
-    { timestamps: true },
+    },
+        { timestamps: true }
+    )
+    
 );
 module.exports = order_item;

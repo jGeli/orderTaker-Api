@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const notification = mongoose.model(
-    "notification",
+    "Notification",
     new mongoose.Schema({
         title: String,
         content: String,
@@ -14,8 +14,10 @@ const notification = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
-    }),
+        },
+    },
     { timestamps: true },
+    )
+    
 );
 module.exports = notification;

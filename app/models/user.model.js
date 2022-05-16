@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const user = mongoose.model(
-  "user",
+const User = mongoose.model(
+  "User",
   new mongoose.Schema({
     username: String,
     email_address: String,
@@ -13,7 +13,7 @@ const user = mongoose.model(
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
+        ref: "Roles"
       }
     ],
     userProfile: [
@@ -29,10 +29,12 @@ const user = mongoose.model(
      ],
     notofications: [
       {
-        type: mongoose.Schema.Types.ObjectId, ref: "notification"
+        type: mongoose.Schema.Types.ObjectId, ref: "Notifications"
       }
     ]
-  }),
-  { timestamps: true },
+  },
+    { timestamps: true }
+  )
+  
 );
-module.exports = user;
+module.exports = User;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const business = mongoose.model(
-    "business",
+    "Business",
     new mongoose.Schema({
         name: String,
         address: String,
@@ -23,37 +23,34 @@ const business = mongoose.model(
          inventory: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "inventory"
+          ref: "Inventories"
         }
          ],
         orders: [
         {
          type: mongoose.Schema.Types.ObjectId,
-         ref: "order"
+         ref: "Orders"
         },
          ],
         purchases: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "purchases"
-            }
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Purchases"
+        }
         ],
         payments: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "payment"
-            }
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Payments"
+        }
         ], 
         customers: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "customer"
-            }
-        ],
-        
-      
-
-    })
-   
+        {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "Customer"
+        }
+        ],       
+    }
+        )    
 );
 module.exports = business;

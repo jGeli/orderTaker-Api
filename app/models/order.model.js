@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const order = mongoose.model(
-    "order",
+    "Orders",
     new mongoose.Schema({
         description: String,
         order_no: String,
         order_item: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "order_item"
+        ref: "Order_Items"
         },
         total_ammount: String,
         isPaid: {
@@ -24,7 +24,9 @@ const order = mongoose.model(
             default: false
         },
         customer_id: String
-    }),
-    { timestamps: true },
+    },
+    { timestamps: true }
+    )
+    
 );
 module.exports = order;
