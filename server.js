@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const dbConfig = require('./app/config/db.config');
+
 const db = require("./app/models");
 const Role = db.roles;
 
