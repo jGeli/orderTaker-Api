@@ -1,12 +1,23 @@
 const PaymentServices = require('../services/payment.services');
+const { validatePaymentData } = require('../utils/validator');
 
 
 exports.handleCreate = async (req, res) => {
 
-    let resp = await PaymentServices.createRecord(req.body)
+    try {
 
-    res.status(200).json({ message: "Created Successfully", data: resp });
+
+    let { valid, errors } = validatePaymentData(req.body);
+        if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
+
+    let resp = await PaymentServices.createRecord(req.body)
+        return res.status(200).json({ message: "Created Successfully", data: resp });
+    }catch (err) {
+        res.status(400).json({ message: "Something went wronged!", errors: err });
+    }
+
 };
+
 
 exports.handleGetById = async (req, res) => {
     let { id } = req.params;

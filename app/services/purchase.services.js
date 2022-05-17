@@ -1,32 +1,32 @@
 const db = require('../models');
 
-const Purchases = db.purchases;
+const Purchase = db.purchases;
 
-class PurchasesServices {
+class PurchaseServices {
 
     static async createRecord(prop) {
         const { product_id, qty, price, total, type, purchaseBy, notes } = prop
 
-        let resp = await Purchases.create({ product_id, qty, price, total, type, purchaseBy, notes });
+        let resp = await Purchase.create({ product_id, qty, price, total, type, purchaseBy, notes });
         return resp
     }
 
 
     static async updateRecord(id, data = {}) {
-        let resp = await Purchases.findByIdAndUpdate(id, { ...data });
+        let resp = await Purchase.findByIdAndUpdate(id, { ...data });
         return resp;
     }
 
 
 
     static async getAll(prop = {}) {
-        let resp = await Purchases.find({ ...prop, isDeleted: false });
+        let resp = await Purchase.find({ ...prop, isDeleted: false });
         return resp;
     }
 
     static async getById(id) {
         try {
-            let resp = await Purchases.findById(id);
+            let resp = await Purchase.findById(id);
             return resp;
         } catch (err) {
             return false
@@ -34,10 +34,10 @@ class PurchasesServices {
     }
 
     static async deleteRecord(id) {
-        let resp = await Purchases.findByIdAndUpdate(id, { isDeleted: true });
+        let resp = await Purchase.findByIdAndUpdate(id, { isDeleted: true });
         return resp;
     }
 }
 
 
-module.exports = PurchasesServices;
+module.exports = PurchaseServices;

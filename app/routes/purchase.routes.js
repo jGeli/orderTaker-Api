@@ -1,5 +1,5 @@
 const { verifySignUp, authJwt } = require("../middlewares");
-const controller = require("../controllers/purchased.controller");
+const controller = require("../controllers/purchase.controller");
 module.exports = function (app) {
     app.use(function (req, res, next) {
         res.header(
@@ -12,23 +12,23 @@ module.exports = function (app) {
 
     //Create
     app.post(
-        "/api/purchased",
+        "/api/purchase",
         controller.handleCreate
     );
 
     //Update
     app.patch(
-        "/api/purchased/:id",
+        "/api/purchase/:id",
         controller.handleUpdateById
     );
 
     //Get All or By Id
     app.get("/api/purchases", controller.handleGetAll);
-    app.get("/api/purchased/:id", controller.handleGetById);
+    app.get("/api/purchase/:id", controller.handleGetById);
 
 
     //Delete
-    app.delete("/api/purchased/:id", controller.handleDeleteById);
+    app.delete("/api/purchase/:id", controller.handleDeleteById);
 
 
 };

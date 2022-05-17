@@ -1,12 +1,22 @@
 const InventoryServices = require('../services/inventory.services');
+const { validateInventoryData } = require('../utils/validator');
 
 
 exports.handleCreate = async (req, res) => {
 
-    let resp = await InventoryServices.createRecord(req.body)
+    try {
 
-    res.status(200).json({ message: "Created Successfully", data: resp });
+        let { valid, errors } = validateInventoryData(req.body);
+        if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
+
+        let resp = await InventoryServices.createRecord(req.body)
+        return res.status(200).json({ message: "Created Successfully", data: resp });
+    } catch (err) {
+        res.status(400).json({ message: "Something went wronged!", errors: err });
+    }
+
 };
+
 
 exports.handleGetById = async (req, res) => {
     let { id } = req.params;
