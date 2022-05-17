@@ -22,6 +22,8 @@ const dbConfig = require('./app/config/db.config');
 const db = require("./app/models");
 const Role = db.roles;
 
+
+
 db.mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -33,7 +35,7 @@ db.mongoose
   })
   .catch(err => {
     console.error("Connection error", err);
-    process.exit();
+    return;
   });
 
 

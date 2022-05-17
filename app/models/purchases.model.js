@@ -13,10 +13,8 @@ const purchased = mongoose.model(
             type: Boolean,
             default: false
         }
-
     },
         { timestamps: true }
     )
-    
 );
 module.exports = purchased;
