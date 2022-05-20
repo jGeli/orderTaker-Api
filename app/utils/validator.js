@@ -42,7 +42,6 @@ const isBD = (data) => {
   };
 
   const isNotLogin = (string) => {
-    console.log(string)
     let logins = ['googleId', 'facebookId', 'mobile'];
       let ind = logins.indexOf(string);
       if(ind === -1) return true;
@@ -53,6 +52,8 @@ const isBD = (data) => {
     let errors = {};
   
     if (isEmpty(data.title)) errors.title = 'Title must not be empty';
+    if (isEmpty(data.title)) errors.title = 'Title must not be empty';
+
     // if (isEmpty(data.notes)) errors.note = 'Note must not be empty';
     return {
       errors,
