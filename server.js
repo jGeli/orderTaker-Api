@@ -81,6 +81,12 @@ app.get("/api", (req, res) => {
 
 
 require('./app/routes/auth.routes')(app);
+require('./app/routes/data.routes')(app);
+
+
+
+
+//Core CRUD
 require('./app/routes/user.routes')(app);
 require('./app/routes/role.routes')(app);
 require('./app/routes/purchase.routes')(app);

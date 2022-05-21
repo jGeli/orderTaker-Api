@@ -59,6 +59,43 @@ const isBD = (data) => {
     };
   };
 
+  const validateSignupData = (data) => {
+    let errors = {};
+  
+    if (isEmpty(data.email_address)) errors.email_address = 'Email address must not be empty';
+    if (!isEmail(data.email_address)) errors.email_address = 'Email address must be a valid email';
+    if (isEmpty(data.username)) errors.username = 'Username must not be empty';
+    if (isPasswordLength(data.password, 8)) errors.password = 'Password must be 8 characters';
+    if (isEmpty(data.password)) errors.password = 'Password must not be empty';
+  
+  
+    return {
+      errors,
+      valid: Object.keys(errors).length === 0 ? true : false
+    };
+  };
+
+
+  const validateLoginData = (data) => {
+    let errors = {};
+  
+  
+    if (isEmpty(data.username)) errors.username = 'username must not be empty';
+    if (isPasswordLength(data.password, 8)) errors.password = 'Password must be 8 characters';
+    if (isEmpty(data.password)) errors.password = 'password must not be empty';
+  
+  
+    return {
+      errors,
+      valid: Object.keys(errors).length === 0 ? true : false
+    };
+  };
+
+
+
+
+
+
   //USER DATA VALIDATION
 const validateUserData = (data) => {
   let errors = {};
@@ -365,6 +402,8 @@ const validateOrderData = (data) => {
     isMobile,
     isEmptyArray,
     isNotLogin,
+    validateLoginData,
+    validateSignupData,
     validateRoleData,
     validateUserData,
     validateNotificationData,
