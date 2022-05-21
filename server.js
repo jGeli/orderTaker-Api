@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const dbConfig = require('./app/config/db.config');
+
 const db = require("./app/models");
 const Role = db.roles;
 
@@ -83,7 +83,7 @@ app.get("/api", (req, res) => {
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/role.routes')(app);
-require('./app/routes/purchased.routes')(app);
+require('./app/routes/purchase.routes')(app);
 require('./app/routes/product.routes')(app);
 require('./app/routes/payment.routes')(app);
 require('./app/routes/order.routes')(app);

@@ -1,27 +1,42 @@
-const PurchasesServices = require('../services/purchased.services');
+const PurchaseServices = require('../services/purchase.services');
+const { validatePurchaseData } = require('../utils/validator');
 
 
   exports.handleCreate = async (req, res) => {
 
-    let resp = await PurchasesServices.createRecord(req.body) 
 
-    res.status(200).json({message: "Created Successfully", data: resp});
-  };
+  try {
+
+
+    let { valid, errors } = validatePurchaseData(req.body);
+    if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
+
+    let resp = await PurchaseServices.createRecord(req.body)
+    return res.status(200).json({ message: "Created Successfully", data: resp });
+  } catch (err) {
+    res.status(400).json({ message: "Something went wronged!", errors: err });
+  }
+
+};
+
+
+  
+
 
   exports.handleGetById = async (req, res) => {
     let { id } = req.params;
-      resp = await PurchasesServices.getById(id);
+      resp = await PurchaseServices.getById(id);
     res.status(200).json({message: "Fetch Success", data: resp});
   };
 
   exports.handleGetAll = async (req, res) => {
-    let resp = await PurchasesServices.getAll(); 
+    let resp = await PurchaseServices.getAll(); 
     res.status(200).json({message: "Fetch Successfully", data: resp});
   };
 
   exports.handleDeleteById = async (req, res) => {
     let { id } = req.params;
-    let resp = await PurchasesServices.deleteRecord(id)
+    let resp = await PurchaseServices.deleteRecord(id)
 
 
     res.status(200).json({message: "Deleted Successfully", data: resp});
@@ -32,7 +47,7 @@ const PurchasesServices = require('../services/purchased.services');
     let { id } = req.params;
 
     try{
-          let resp = await PurchasesServices.updateRecord(id, req.body);
+          let resp = await PurchaseServices.updateRecord(id, req.body);
           res.status(200).json({message: "Updated Successfully", data: resp});
         }catch(err) {
         console.log(err)

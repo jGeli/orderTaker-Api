@@ -5,7 +5,7 @@ const { validateRoleData } = require('../utils/validator');
       
     try{
 
-    let { title } = req.body;
+   let { title } = req.body; 
 
 
     let { valid, errors } = validateRoleData(req.body);

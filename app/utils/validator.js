@@ -47,19 +47,280 @@ const isBD = (data) => {
       if(ind === -1) return true;
       else return false;
   };
-
+  // ROLE DATA VALIDATION
     const validateRoleData = (data) => {
     let errors = {};
   
     if (isEmpty(data.title)) errors.title = 'Title must not be empty';
-    if (isEmpty(data.title)) errors.title = 'Title must not be empty';
-
-    // if (isEmpty(data.notes)) errors.note = 'Note must not be empty';
+  
     return {
       errors,
       valid: Object.keys(errors).length === 0 ? true : false
     };
   };
+
+  //USER DATA VALIDATION
+const validateUserData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.firstName)) errors.firstName = 'FirstName must not be empty';
+  // if (isEmpty(data.notes)) errors.note = 'Note must not be empty';
+  if (isEmpty(data.lastName)) errors.lastName = 'lastName must not be empty';
+
+  if (isEmpty(data.birthDate)) errors.birthDate = 'birthDate must not be empty';
+
+  if (isEmpty(data.age)) errors.age = 'age must not be empty';
+
+  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
+
+  if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
+
+  if (isEmpty(data.address)) errors.address = 'address must not be empty';
+
+  if (isEmpty(data.email_address)) errors.email_address = 'email must not be empty';
+
+  if (isEmpty(data.username)) errors.username = 'username must not be empty';
+
+  if (isEmpty(data.password)) errors.password = 'password must not be empty';
+
+  if (isEmpty(data.roles)) errors.password = 'password must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+  //NOTIFICATION DATA VALIDATION
+const validateNotificationData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.title)) errors.title = 'Title must not be empty';
+
+  if (isEmpty(data.content)) errors.content = 'contentmust not be empty';
+
+  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+
+  if (isEmpty(data.status)) errors.status = 'status must not be empty';
+
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+  
+  //PURCHASES DATA VALIDATION
+const validatePurchaseData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.product_id)) errors.product_id = 'product_id must not be empty';
+
+  if (isEmpty(data.qty)) errors.qty = 'qty not be empty';
+
+  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+
+  if (isEmpty(data.total)) errors.total = 'total must not be empty';
+
+  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+
+  if (isEmpty(data.purchaseBy)) errors.purchaseBy = 'purchaseBy must not be empty';
+
+
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //BUSINESS DATA VALIDATION
+const validateBusinessData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.name)) errors.name = 'name must not be empty';
+
+  if (isEmpty(data.address)) errors.address = 'address must not be empty';
+
+  if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
+
+  if (isEmpty(data.email_address)) errors.email_address = 'email_address must not be empty';
+
+  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+
+  if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
+
+  if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
+
+  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
+
+  if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //PRODUCTS DATA VALIDATION
+const validateProductData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.name)) errors.name = 'name must not be empty';
+
+  if (isEmpty(data.description)) errors.description = 'description must not be empty';
+
+  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+
+  if (isEmpty(data.categories)) errors.categories = 'categories must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //INVENTORY DATA VALIDATION
+const validateInventoryData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.product_id)) errors.product_id = 'product_id must not be empty';
+
+  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
+
+  if (isEmpty(data.inStocks)) errors.inStocks = 'inStocks must not be empty';
+
+  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //PAYMENTS DATA VALIDATION
+const validatePaymentData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.order_id)) errors.order_id = 'order_id must not be empty';
+
+  if (isEmpty(data.customer_id)) errors.customer_id = 'customer_id must not be empty';
+
+  if (isEmpty(data.business_id)) errors.business_id = 'business_idmust not be empty';
+
+  if (isEmpty(data.amount)) errors.amount = 'amount must not be empty';
+
+  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //CUSTOMER DATA VALIDATION
+const validateCustomerData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.firstName)) errors.firstName = 'firstName must not be empty';
+
+  if (isEmpty(data.lastName)) errors.lastName = 'lastName must not be empty';
+
+  if (isEmpty(data.birthDate)) errors.birthDate = 'birthDate must not be empty';
+
+  if (isEmpty(data.age)) errors.age = 'age must not be empty';
+
+  if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
+
+  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
+
+  if (isEmpty(data.address)) errors.address = 'address must not be empty';
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //CATEGORIES DATA VALIDATION
+const validateCategoryData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.name)) errors.name = 'name must not be empty';
+
+  if (isEmpty(data.description)) errors.description = 'description must not be empty';
+
+
+
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //ORDER_ITEMS DATA VALIDATION
+const validateOrder_itemData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.inventory_id)) errors.inventory_id = 'inventory_id must not be empty';
+
+  if (isEmpty(data.qty)) errors.qty = 'qty must not be empty';
+
+  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+
+  if (isEmpty(data.subtotal)) errors.subtotal = 'subtotal must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+   //ORDERS VALIDATION
+const validateOrderData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.description)) errors.description = 'description must not be empty';
+
+  if (isEmpty(data.order_no)) errors.order_no = 'order_no must not be empty';
+
+  if (isEmpty(data.order_items)) errors.order_items = 'order_items must not be empty';
+
+  if (isEmpty(data.total_ammount)) errors.total_ammount = 'total_ammount must not be empty';
+
+  if (isEmpty(data.customer_id)) errors.customer_id = 'customer_id must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //   const validateLoginData = (data) => {
@@ -104,5 +365,17 @@ const isBD = (data) => {
     isMobile,
     isEmptyArray,
     isNotLogin,
-    validateRoleData
+    validateRoleData,
+    validateUserData,
+    validateNotificationData,
+    validatePurchaseData,
+    validateBusinessData,
+    validateProductData,
+    validateInventoryData,
+    validatePaymentData,
+    validateCustomerData,
+    validateCategoryData,
+    validateOrder_itemData,
+    validateOrderData,
+    
   }
