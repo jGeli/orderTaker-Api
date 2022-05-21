@@ -1,4 +1,4 @@
-const { users } = require('../models');
+// const { users } = require('../models');
 const UserServices = require('../services/user.services');
 const { validateUserData } = require('../utils/validator');
 

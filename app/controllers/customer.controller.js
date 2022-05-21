@@ -1,20 +1,26 @@
 const CustomerServices = require('../services/customer.services');
 const { validateCustomerData } = require('../utils/validator');
 
+
 exports.handleCreate = async (req, res) => {
+
 
     try {
 
         let { valid, errors } = validateCustomerData(req.body);
-        if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
+        if (!valid) return res.status(400).json({ message: "Something went wrong!", errors })
 
         let resp = await CustomerServices.createRecord(req.body)
         return res.status(200).json({ message: "Created Successfully", data: resp });
     } catch (err) {
-        res.status(400).json({ message: "Something went wronged!", errors: err });
+        res.status(400).json({ message: "Something went wrong!", errors: err });
     }
 
 };
+
+
+
+
 
 exports.handleGetById = async (req, res) => {
     let { id } = req.params;
@@ -47,4 +53,3 @@ exports.handleUpdateById = async (req, res) => {
         res.status(400).json({ message: 'Something went wrong!' })
     }
 }
-

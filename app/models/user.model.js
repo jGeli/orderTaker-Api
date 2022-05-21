@@ -2,8 +2,15 @@ const mongoose = require("mongoose");
 const User = mongoose.model(
   "users",
   new mongoose.Schema({
-    username: String,
+    firstName: String,
+    lastName: String,
+    birthDate: String,
+    age: String,
+    gender: String,
+    contact: String,
+    address: String,
     email_address: String,
+    username: String,
     password: String,
     dpUrl: String,
     notes: String,

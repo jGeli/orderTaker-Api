@@ -42,7 +42,6 @@ const isBD = (data) => {
   };
 
   const isNotLogin = (string) => {
-    console.log(string)
     let logins = ['googleId', 'facebookId', 'mobile'];
       let ind = logins.indexOf(string);
       if(ind === -1) return true;
@@ -236,12 +235,11 @@ const validateCustomerData = (data) => {
 
   if (isEmpty(data.age)) errors.age = 'age must not be empty';
 
-  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
-
   if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
 
-  if (isEmpty(data.address)) errors.address = 'address must not be empty';
+  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
 
+  if (isEmpty(data.address)) errors.address = 'address must not be empty';
   return {
     errors,
     valid: Object.keys(errors).length === 0 ? true : false
@@ -375,8 +373,9 @@ const validateOrderData = (data) => {
     validateProductData,
     validateInventoryData,
     validatePaymentData,
+    validateCustomerData,
     validateCategoryData,
     validateOrder_itemData,
     validateOrderData,
-   
+    
   }
