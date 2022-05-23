@@ -105,3 +105,5 @@ exports.getAuthUser = async (req, res) => {
     let user = await UserService.getById(userId);
     res.status(200).json({message: 'Success', userId, user})
 }
+
+

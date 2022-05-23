@@ -1,5 +1,6 @@
 const { verifySignUp, authJwt } = require("../middlewares");
 const controller = require("../controllers/role.controller");
+
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -8,6 +9,19 @@ module.exports = function(app) {
     );
     next();
   });
+
+
+
+
+
+  //Get All 
+  app.get("/api/roles", controller.handleGetAll);
+  
+  
+  
+  
+  //Get by ID
+  app.get("/api/role/:id", controller.handleGetById);
 
 
 //Create
@@ -22,9 +36,7 @@ module.exports = function(app) {
     controller.handleUpdateById
   );
 
- //Get All or By Id
-  app.get("/api/roles", controller.handleGetAll);
-  app.get("/api/role/:id", controller.handleGetById);
+
   
 
   //Delete

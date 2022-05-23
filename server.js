@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 const express = require("express");
 
@@ -8,11 +7,16 @@ var corsOptions = {
   origin: "*"
 };
 
+
+
+
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+
 
 
 
@@ -74,7 +78,7 @@ function initial() {
 
 // simple route
 app.get("/api", (req, res) => {
-  res.json({ message: "Welcome to alayon order taker application."});
+  res.json({ message: "Welcome to alayon order taker application." });
 });
 
 
@@ -93,6 +97,8 @@ require('./app/routes/inventory.routes')(app);
 require('./app/routes/customer.routes')(app);
 require('./app/routes/category.routes')(app);
 require('./app/routes/business.routes')(app);
+
+
 
 
 

@@ -63,7 +63,14 @@ const isBD = (data) => {
 const validateUserData = (data) => {
   let errors = {};
 
+  if (isEmpty(data.email_address)) errors.email_address = 'email must not be empty';
+
+  if (isEmpty(data.username)) errors.username = 'username must not be empty';
+
+  if (isEmpty(data.password)) errors.password = 'password must not be empty';
+
   if (isEmpty(data.firstName)) errors.firstName = 'FirstName must not be empty';
+  
   // if (isEmpty(data.notes)) errors.note = 'Note must not be empty';
   if (isEmpty(data.lastName)) errors.lastName = 'lastName must not be empty';
 
@@ -76,14 +83,6 @@ const validateUserData = (data) => {
   if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
 
   if (isEmpty(data.address)) errors.address = 'address must not be empty';
-
-  if (isEmpty(data.email_address)) errors.email_address = 'email must not be empty';
-
-  if (isEmpty(data.username)) errors.username = 'username must not be empty';
-
-  if (isEmpty(data.password)) errors.password = 'password must not be empty';
-
-  if (isEmpty(data.roles)) errors.password = 'password must not be empty';
 
   return {
     errors,
