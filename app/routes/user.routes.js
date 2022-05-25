@@ -1,7 +1,6 @@
 const { verifySignUp, authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+
 require('dotenv').config()
 
 
@@ -19,25 +18,7 @@ module.exports = function (app) {
 
 
 
-  const options ={
-    definition: {
-      openapi: '3.0.0',
-      info: {
-        title: 'orderTaker-Api',
-        version: '1.0.0'
-      },
-      servers: [
-        {
-          servers: 'mongodb://docampaign.online:27017/order_taker',
-          url: 'http://localhost:27012/'  
-        }
-      ]
-    },
-    apis: ['./app/routes/user.routes.js']
-  }
 
-const swaggerDocs = swaggerJsDoc(options)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
  
 
@@ -141,7 +122,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
   app.get("/api/user/:id", controller.handleGetById);
 
 
-                    // USER - CREATE
+                         // USER - CREATE
 
 
   /**
@@ -165,15 +146,67 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
     controller.handleCreate
   );
 
-  //Update
+                              //USER - UPDATE
+  /**
+* @swagger
+* /api/user/{id}:
+*  patch:
+*      summary: USER - UPDATE
+*      description: this api is used to update user data
+*      parameters:
+*          - in: path
+*            name: id
+*            required: true
+*            description: user ID required
+*            schema:
+*              type: string
+*      requestBody:
+*          required: true
+*          content:
+*              application/json:
+*                  schema:
+*                      $ref: '#components/schemas/User'
+*      responses: 
+*          200:
+*              description: used to update users
+*              content: 
+*                  apllication/json:
+*                      schema:
+*                           type: array
+*                           items: 
+*                              $ref: '#components/schemas/User'
+*/
   app.patch(
     "/api/user/:id",
     controller.handleUpdateById
   );
   
-  
+                            //USER - DELETE 
 
-  //Delete
+  /**
+   * @swagger
+   * /api/user/{id}:
+   *  delete:
+   *      summary: USER - DELETE BY ID
+   *      description: this api is used to delete user by ID
+   *      parameters:
+   *          - in: path
+   *            name: id
+   *            required: true
+   *            description: user ID required
+   *            schema:
+   *              type: string
+   *      responses: 
+   *          200:
+   *              description: to get user
+   *              content: 
+   *                  apllication/json:
+   *                      schemas:
+   *                           type: array
+   *                           items: 
+   *                              $ref: '#components/schemas/user'
+   */
+
   app.delete("/api/user/:id", controller.handleDeleteById);
 
 

@@ -187,7 +187,7 @@ const validateInventoryData = (data) => {
 
   if (isEmpty(data.product_id)) errors.product_id = 'product_id must not be empty';
 
-  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
+  if (isEmpty(data.purchases_id)) errors.purchases_id = 'purchases_id must not be empty';
 
   if (isEmpty(data.inStocks)) errors.inStocks = 'inStocks must not be empty';
 
@@ -293,9 +293,27 @@ const validateOrderData = (data) => {
 
   if (isEmpty(data.order_items)) errors.order_items = 'order_items must not be empty';
 
-  if (isEmpty(data.total_ammount)) errors.total_ammount = 'total_ammount must not be empty';
+  if (isEmpty(data.total_amount)) errors.total_amount = 'total_amount must not be empty';
 
   if (isEmpty(data.customer_id)) errors.customer_id = 'customer_id must not be empty';
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false
+  };
+};
+
+
+
+//PRICING VALIDATION
+const validatePricingData = (data) => {
+  let errors = {};
+
+  if (isEmpty(data.name)) errors.name = 'name must not be empty';
+
+
+  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+
 
   return {
     errors,
@@ -376,5 +394,6 @@ const validateOrderData = (data) => {
     validateCategoryData,
     validateOrder_itemData,
     validateOrderData,
+    validatePricingData
     
   }
