@@ -11,10 +11,10 @@ class UserServices {
         return resp
     }
 
-  static async updateRecord(id){
-    let resp = await User.findByIdAndUpdate(id, { isDeleted: true });
-    return resp;
-}
+    static async updateRecord(id, data = {}){
+        let resp = await User.findByIdAndUpdate(id, { ...data });
+        return resp;
+    }
 
 
         
