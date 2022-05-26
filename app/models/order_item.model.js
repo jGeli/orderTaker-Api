@@ -14,8 +14,10 @@ const order_item = mongoose.model(
         },
         price: [
             {
+                
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "pricing"
+                ref: "pricing",
+                type: Number
             }]
 
 

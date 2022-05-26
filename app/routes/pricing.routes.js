@@ -33,7 +33,7 @@ module.exports = function (app) {
 
 
 
-    // PRICING - GET ALL
+                        // PRICING - GET ALL
     /**
      * @swagger
      * /api/pricings:
@@ -54,7 +54,7 @@ module.exports = function (app) {
     app.get("/api/pricings", controller.handleGetAll);
 
 
-    // PRICING - GET BY ID
+                      // PRICING - GET BY ID
 
     /**
 * @swagger
@@ -82,7 +82,7 @@ module.exports = function (app) {
     app.get("/api/pricing/:id", controller.handleGetById);
 
 
-    // PRICING - CREATE
+                         // PRICING - CREATE
 
     /**
       * @swagger
@@ -106,7 +106,7 @@ module.exports = function (app) {
     );
 
 
-    // PRICING - UPDATE
+                          // PRICING - UPDATE
 
     /**
      * @swagger
@@ -144,7 +144,7 @@ module.exports = function (app) {
     );
 
 
-    // PRICING - DELETE
+                              // PRICING - DELETE
 
     /**
    * @swagger
