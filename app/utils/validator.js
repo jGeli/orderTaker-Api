@@ -147,13 +147,13 @@ const validateBusinessData = (data) => {
 
   if (isEmpty(data.type)) errors.type = 'type must not be empty';
 
-  if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
+  // if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
 
-  if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
+  // if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
 
-  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
+  // if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
 
-  if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
+  // if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
 
   return {
     errors,
