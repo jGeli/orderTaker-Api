@@ -21,28 +21,28 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'orderTaker-Api',
-      version: '1.0.0'
-    },
-    servers: [
-      {
-        servers: 'mongodb://docampaign.online:27017/order_taker',
-        url: 'http://localhost:27012/'
-      }
-    ]
-  },
-  apis: ['./app/routes/user.routes.js', './app/routes/customer.routes.js', './app/routes/role.routes.js', './app/routes/purchase.routes.js', './app/routes/product.routes.js', './app/routes/payment.routes.js', './app/routes/order.routes.js', './app/routes/order_item.routes.js', './app/routes/notification.routes.js', './app/routes/inventory.routes.js', './app/routes/category.routes.js', './app/routes/business.routes.js', './app/routes/pricing.routes.js']
-}
+// const options = {
+//   definition: {
+//     openapi: '3.0.0',
+//     info: {
+//       title: 'orderTaker-Api',
+//       version: '1.0.0'
+//     },
+//     servers: [
+//       {
+//         servers: 'mongodb://docampaign.online:27017/order_taker',
+//         url: 'http://localhost:27012/'
+//       }
+//     ]
+//   },
+//   apis: ['./app/routes/user.routes.js', './app/routes/customer.routes.js', './app/routes/role.routes.js', './app/routes/purchase.routes.js', './app/routes/product.routes.js', './app/routes/payment.routes.js', './app/routes/order.routes.js', './app/routes/order_item.routes.js', './app/routes/notification.routes.js', './app/routes/inventory.routes.js', './app/routes/category.routes.js', './app/routes/business.routes.js', './app/routes/pricing.routes.js']
+// }
 
 
 
 
-const swaggerDocs = swaggerJsDoc(options)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+// const swaggerDocs = swaggerJsDoc(options)
+// app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 
 
