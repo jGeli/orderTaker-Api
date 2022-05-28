@@ -106,8 +106,6 @@ const validateUserData = (data) => {
 
   if (isEmpty(data.birthDate)) errors.birthDate = 'birthDate must not be empty';
 
-  if (isEmpty(data.age)) errors.age = 'age must not be empty';
-
   if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
 
   if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';

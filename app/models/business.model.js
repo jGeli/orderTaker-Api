@@ -26,6 +26,10 @@ const business = mongoose.model(
             ref: "purchases"
             }
             ],
+        // user: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: "users"
+        // }
         //  inventory: [
         // {
         //   type: mongoose.Schema.Types.ObjectId,

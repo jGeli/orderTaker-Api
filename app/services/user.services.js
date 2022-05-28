@@ -3,7 +3,6 @@ const db = require('../models');
 const User = db.users;
 
 class UserServices {
-
     static async createRecord(prop) {
         const { username, email_address, password,notes, role,notification, business } = prop
 
@@ -19,13 +18,14 @@ class UserServices {
 
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false });
+          let resp =  await User.find({ ...prop, isDeleted: false }).populate('roles');
+          ;
           return resp
     }
 
     static async getById(id){
         try{
-            let resp = await User.findById(id);
+            let resp = await User.findById(id).populate('roles');
             return resp;
         } catch(err){
             return false
