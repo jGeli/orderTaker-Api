@@ -21,12 +21,14 @@ module.exports = function (app) {
       *                        type: string
       *                    order_no:
       *                        type: string
-      *                    order_items:
-      *                        type: string
+      *                    order_items: [{
+      *                        type: mongoose.Schema.Types.ObjectId,
+      *                             ref: "order_items" }]
       *                    total_amount: 
       *                        type: string
-      *                    customer_id:
-      *                        type: string
+      *                    customer_id: [{
+      *                        type: mongoose.Schema.Types.ObjectId,
+      *                             ref: "order_items" }]
       *                    recordedBy:
       *                        type: string
       *                    notes: 

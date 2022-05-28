@@ -6,10 +6,15 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 const UserService = require('../services/user.services');
-
+const { validateLoginData, validateSignupData } = require('../utils/validator');
 
 
 exports.signup = (req, res) => {
+
+  let { valid, errors } = validateSignupData(req.body);
+  if(!valid) return res.status(404).json({ message: { text: 'Something went wrong!', type: 'error' }, errors });
+
+
   const user = new User({
     username: req.body.username,
     email_address: req.body.email_address,
@@ -59,6 +64,11 @@ exports.signup = (req, res) => {
   });
 };
 exports.signin = (req, res) => {
+
+  let { valid, errors } = validateLoginData(req.body);
+  if(!valid) return res.status(404).json({ message: { text: 'Something went wrong!', type: 'error' }, errors });
+
+
   User.findOne({
     username: req.body.username
   })
@@ -69,7 +79,7 @@ exports.signin = (req, res) => {
         return;
       }
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: { text: "User Not found.", type: 'warning'} });
       }
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -78,7 +88,7 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: "Invalid Password!"
+          message: { text: "Invalid Password!", type: 'error'}
         });
       }
       var token = jwt.sign({ id: user.id }, config.secret, {

@@ -7,13 +7,19 @@ const order = mongoose.model(
         total_amount: String,
         recordedBy: String,
         notes: String,
-        customer_id: String,
-        order_item: [
+        customer_id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "customers"
+            },
+        order_items: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "order_item"
             }
         ],
+        total_amount: String,
+        recordedBy: String,
+        notes: String,
         isPaid: {
             type: Boolean,
             default: false
@@ -28,6 +34,8 @@ const order = mongoose.model(
         }
      
 
-    })
+    },
+        { timestamps: true }
+    )
 );
 module.exports = order;

@@ -26,32 +26,33 @@ const business = mongoose.model(
             ref: "purchases"
             }
             ],
-        //  inventory: [
-        // {
-        //   type: mongoose.Schema.Types.ObjectId,
-        //   ref: "inventories"
-        // }
-        //  ],
-        // orders: [
-        // {
-        //  type: mongoose.Schema.Types.ObjectId,
-        //  ref: "orders"
-        // },
-        //  ],
+         inventory: [
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "inventories"
+            }
+            ],
+        orders: [
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "orders"
+            },
+            ],
   
-        // payments: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "payments"
-        // }
-        // ], 
-        // customers: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId, 
-        // ref: "customers"
-        // }
-        // ],       
-    }
-        )    
+        payments: [
+            {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "payments"
+            }
+            ], 
+        customers: [
+            {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "customers"
+            }
+            ],       
+    },
+        { timestamps: true }
+    )    
 );
 module.exports = business;

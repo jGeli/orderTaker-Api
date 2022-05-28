@@ -84,7 +84,7 @@ module.exports = function(app) {
                               //ROLE - CREATE
   /**
  * @swagger
- * /api/role:
+ * /api/roles:
  *  post:
  *      summary: ROLE - CREATE
  *      description: this api is used to create role

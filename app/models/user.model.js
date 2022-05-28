@@ -9,41 +9,36 @@ const User = mongoose.model(
     gender: String,
     contact: String,
     address: String,
-    email_address: {
-      type: String,
-      unique: true
-    },  
-    username: {
-      type: String,
-      unique: true
-    },
+    email_address: String, 
+    username: String,
     password: String,
     dpUrl: String,
     notes: String,
     isDeleted: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
     isBlock: { type: Boolean, default: false },
-    roles: [
+    role: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "roles"
-      }
-    ],
+      },
     notifications: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "notifcations"
+        ref: "notifications"
       }
     ],
-    business: [
+    business: 
       {
          type: mongoose.Schema.Types.ObjectId,
          ref: "businesses"
-      }
-     ]
+      },
+     
   },
     { timestamps: true }
   )
   
 );
 module.exports = User;
+
+

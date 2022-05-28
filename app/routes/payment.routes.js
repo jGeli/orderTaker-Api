@@ -16,12 +16,15 @@ module.exports = function (app) {
      *           Payments:
      *              type: object
      *              properties:
-     *                    order_id:
-     *                        type: string
-     *                    customer_id:
-     *                        type: string
-     *                    business_id:
-     *                        type: string
+     *                    order_id: [{
+     *                        type: mongoose.Schema.Types.ObjectId,
+     *                             ref: "orders" }]
+     *                    customer_id: [{
+     *                        type: mongoose.Schema.Types.ObjectId,
+     *                             ref: "customers" }]
+     *                    business_id: [{
+     *                        type: mongoose.Schema.types.ObjectId,
+     *                             ref: "businesses" }]
      *                    description: 
      *                        type: string
      *                    amount:

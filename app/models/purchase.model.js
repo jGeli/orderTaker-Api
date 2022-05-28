@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
-const purchased = mongoose.model(
+const purchase = mongoose.model(
     "purchases",
     new mongoose.Schema({
-        poduct_id: String,
+        poduct_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "products"
+        },
         qty: String,
         price: String,
         total: String,
@@ -17,4 +20,4 @@ const purchased = mongoose.model(
         { timestamps: true }
     )
 );
-module.exports = purchased;
+module.exports = purchase;

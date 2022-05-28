@@ -5,9 +5,9 @@ const Customer = db.customers;
 class CustomerServices {
 
     static async createRecord(prop) {
-        const { firstName, lastName, birthDate, age, contacts, gender, notes } = prop
+        const { firstName, lastName, birthDate, age, contact, address, gender, notes } = prop
 
-        let resp = await Customer.create({ firstName, lastName, birthDate, age, contacts, gender, notes
+        let resp = await Customer.create({ firstName, lastName, birthDate, age, contact, address, gender, notes
 });
         return resp
     }

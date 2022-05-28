@@ -5,9 +5,9 @@ const Payment = db.payments;
 class PaymentServices {
 
     static async createRecord(prop) {
-        const { title, notes } = prop
+        const { order_id, customer_id, business_id, description, amount, type, receiveBy } = prop
 
-        let resp = await Payment.create({ title, notes });
+        let resp = await Payment.create({ order_id, customer_id, business_id, description, amount, type, receiveBy });
         return resp
     }
 

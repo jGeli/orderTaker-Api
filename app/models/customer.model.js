@@ -14,6 +14,8 @@ const customer = mongoose.model(
             type: Boolean,
             default: false
         }
-    })
+    },
+        { timestamps: true }
+    )
 );
 module.exports = customer;

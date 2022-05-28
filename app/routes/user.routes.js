@@ -29,8 +29,6 @@ module.exports = function (app) {
  *           user:
  *              type: object
  *              properties: 
- *                    _id: 
- *                        type: string
  *                    email_address: 
  *                        type: string
  *                    username: 
@@ -64,6 +62,14 @@ module.exports = function (app) {
    *                         type: string
    *                    notes:
    *                         type: string
+   *                    dpUrl:
+   *                         type: string
+   *                    role: [{
+   *                          type: mongoose.Schema.Types.ObjectId,
+   *                              ref: 'roles'}]
+   *                    business: [{
+   *                          type: mongoose.Schema.Type.ObjectId,
+   *                              ref: 'businesses'}]
  */
 
                         // USER GET ALL

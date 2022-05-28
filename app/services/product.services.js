@@ -5,9 +5,9 @@ const Product = db.products;
 class ProductServices {
 
     static async createRecord(prop) {
-        const { title, notes } = prop
+        const { name, description, type, categories_id, notes } = prop
 
-        let resp = await Product.create({ title, notes });
+        let resp = await Product.create({ name, description, type, categories_id, notes });
         return resp
     }
 

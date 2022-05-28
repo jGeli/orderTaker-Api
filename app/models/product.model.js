@@ -5,10 +5,10 @@ const product = mongoose.model(
         name: String,
         description: String,
         type: String,
-        categories: [{
+        category: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "categories"
-        }],
+        },
         notes: String,
         isDeleted: {
          type: Boolean, 

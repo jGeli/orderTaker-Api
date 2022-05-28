@@ -2,9 +2,15 @@ const mongoose = require("mongoose");
 const order_item = mongoose.model(
     "order_items",
     new mongoose.Schema({
-        inventory_id: String,
+        inventory_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "inventories"
+        },
         qty: String,
-        price: String,
+        price: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'pricings'
+        },
         subtotal: String,
         type: String,
         notes: String,

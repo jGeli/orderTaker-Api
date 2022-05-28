@@ -5,9 +5,10 @@ const Inventory = db.inventories;
 class InventoryServices {
 
     static async createRecord(prop) {
-        const { purchases, description, inStocks, price, notes } = prop
+        const { product_id, purchases, description, inStocks, price, notes } = prop
 
-        let resp = await Inventory.create({ purchases, description, inStocks, price, notes });
+        let resp = await Inventory.create({ product_id, purchases, description, inStocks, price, notes
+});
         return resp
     }
 

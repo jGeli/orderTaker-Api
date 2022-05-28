@@ -2,12 +2,12 @@ require('dotenv').config()
 const express = require("express");
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
 const cors = require("cors");
 const app = express();
 var corsOptions = {
   origin: "*"
 };
+
 
 
 
@@ -108,6 +108,12 @@ app.get("/api", (req, res) => {
 
 
 require('./app/routes/auth.routes')(app);
+require('./app/routes/data.routes')(app);
+
+
+
+
+//Core CRUD
 require('./app/routes/user.routes')(app);
 require('./app/routes/role.routes')(app);
 require('./app/routes/purchase.routes')(app);

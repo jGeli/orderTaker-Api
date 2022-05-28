@@ -16,8 +16,9 @@ module.exports = function (app) {
       *           Order_items:
       *              type: object
       *              properties:
-      *                    inventory_id:
-      *                        type: string
+      *                    inventory_id: {
+      *                        type: mongoose.Schema.Types.ObjectId,
+      *                             ref: 'inventories' }
       *                    qty:
       *                        type: string
       *                    price:

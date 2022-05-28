@@ -29,16 +29,21 @@ module.exports = function (app) {
        *                         type: string
        *                    notes:
        *                         type: string
-       *                    inventory_id:
-       *                         type: string   
-       *                    orders_id:
-       *                         type: string
-       *                    purchases_id:
-       *                         type: string
-       *                    payments_id:
-       *                         type: string   
-       *                    customers_id:
-       *                         type: string
+       *                    inventory: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'inventories'}]   
+       *                    orders: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'orders'}]   
+       *                    purchases: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'purchases'}]   
+       *                    payments: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'payments'}]   
+       *                    customers: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'customers'}]   
      */
 
 

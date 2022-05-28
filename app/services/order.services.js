@@ -5,9 +5,9 @@ const Order = db.orders;
 class OrderServices {
 
     static async createRecord(prop) {
-        const { description, order_no, order_item, type, total_ammount, customer_id } = prop
+        const { description, order_no, order_items, type, total_amount, customer_id, recordedBy, notes } = prop
 
-        let resp = await Order.create({ description, order_no, order_item, type, total_ammount, customer_id });
+        let resp = await Order.create({ description, order_no, order_items, type, total_amount, customer_id, recordedBy, notes });
         return resp
     }
 
