@@ -9,8 +9,14 @@ const User = mongoose.model(
     gender: String,
     contact: String,
     address: String,
-    email_address: String,
-    username: String,
+    email_address: {
+      type: String,
+      unique: true
+    },  
+    username: {
+      type: String,
+      unique: true
+    },
     password: String,
     dpUrl: String,
     notes: String,

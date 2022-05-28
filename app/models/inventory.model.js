@@ -19,8 +19,13 @@ const inventory = mongoose.model(
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "product"
+            }],
+          price: [
+              {
+            type: mongoose.Schema.Types.Array,
+            ref: "pricing"
             }]
-    },
+    },      
         { timestamps: true }
     )
 );

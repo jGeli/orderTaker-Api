@@ -11,7 +11,16 @@ const order_item = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
+        },
+        price: [
+            {
+                
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "pricing",
+                type: Number
+            }]
+
+
 
     },
         { timestamps: true }
