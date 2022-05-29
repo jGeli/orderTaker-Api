@@ -3,7 +3,7 @@ const inventory = mongoose.model(
     "inventories",
     new mongoose.Schema({
         
-   product_id: {
+   products: {
        type: mongoose.Schema.Types.ObjectId,
        ref: "products"
    },

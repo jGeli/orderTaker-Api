@@ -21,13 +21,15 @@ class InventoryServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Inventory.find({ ...prop, isDeleted: false });
+        let resp = await Iventory.find({ ...prop, isDeleted: false })
+            .populate('products', 'purchases', 'pricings' );
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Inventory.findById(id);
+            let resp = await Inventory.findById(id).populate('products', 'purchases', 'pricings');
             return resp;
         } catch (err) {
             return false

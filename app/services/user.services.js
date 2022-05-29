@@ -11,33 +11,23 @@ class UserServices {
         return resp
     }
 
-<<<<<<< HEAD
-=======
     static async updateRecord(id, data = {}){
         let resp = await User.findByIdAndUpdate(id, { ...data });
         return resp;
     }
->>>>>>> 71e863dc7d4fefc0b30ce2fa638674661cee2c04
 
 
-<<<<<<< HEAD
-
-
-    static async getAll(prop = {}) {
-        let resp = await User.find({ ...prop, isDeleted: false });
-        return resp;
-=======
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false }).populate('roles');
+          let resp =  await User.find({ ...prop, isDeleted: false })
+          .populate('roles', 'notifications', 'businesses');
           ;
           return resp
->>>>>>> 71e863dc7d4fefc0b30ce2fa638674661cee2c04
     }
 
     static async getById(id){
         try{
-            let resp = await User.findById(id).populate('roles');
+            let resp = await User.findById(id).populate('roles', 'notifications', 'businesses');
             return resp;
         } catch (err) {
             return false

@@ -20,13 +20,15 @@ class ProductServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Product.find({ ...prop, isDeleted: false });
+        let resp = await Product.find({ ...prop, isDeleted: false })
+            .populate('categories');
+
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Product.findById(id);
+            let resp = await Product.findById(id).populate('categories');
             return resp;
         } catch (err) {
             return false

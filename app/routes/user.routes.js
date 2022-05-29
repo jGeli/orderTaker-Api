@@ -64,12 +64,15 @@ module.exports = function (app) {
    *                         type: string
    *                    dpUrl:
    *                         type: string
-   *                    role: [{
+   *                    roles: [{
    *                          type: mongoose.Schema.Types.ObjectId,
    *                              ref: 'roles'}]
-   *                    business: [{
+   *                    businesses: [{
    *                          type: mongoose.Schema.Type.ObjectId,
    *                              ref: 'businesses'}]
+  *                     notifications [{
+   *                          type: mongoose.Schema.Type.ObjectId,
+   *                              ref: 'notifications'}]
  */
 
                         // USER GET ALL

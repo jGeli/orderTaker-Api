@@ -21,13 +21,15 @@ class Order_itemServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Order_item.find({ ...prop, isDeleted: false });
+        let resp = await Order_item.find({ ...prop, isDeleted: false })
+            .populate('inventories', 'pricings');
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Order_item.findById(id);
+            let resp = await Order_item.findById(id).populate('inventories', 'pricings');
             return resp;
         } catch (err) {
             return false

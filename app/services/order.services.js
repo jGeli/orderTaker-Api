@@ -20,13 +20,15 @@ class OrderServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Order.find({ ...prop, isDeleted: false });
+        let resp = await Order.find({ ...prop, isDeleted: false })
+            .populate('order_items');
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Order.findById(id);
+            let resp = await Order.findById(id).populate('order_items');
             return resp;
         } catch (err) {
             return false

@@ -17,18 +17,18 @@ const User = mongoose.model(
     isDeleted: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
     isBlock: { type: Boolean, default: false },
-    role: 
+    roles: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "roles"
       },
-    notifications: [
+    notifications: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "notifications"
       }
-    ],
-    business: 
+    ,
+    businesses: 
       {
          type: mongoose.Schema.Types.ObjectId,
          ref: "businesses"

@@ -17,7 +17,7 @@ module.exports = function (app) {
          *           Purchases:
          *              type: object
          *              properties:
-         *                    product_id: [{
+         *                    products: [{
          *                        type: mongoose.Schema.Types.ObjectId,
          *                           ref: 'products' }]
          *                    qty:

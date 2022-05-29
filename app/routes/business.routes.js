@@ -29,7 +29,7 @@ module.exports = function (app) {
        *                         type: string
        *                    notes:
        *                         type: string
-       *                    inventory: [{
+       *                    inventories: [{
        *                         type: mongoose.Schema.Types.ObjectId,
        *                              ref: 'inventories'}]   
        *                    orders: [{
@@ -44,6 +44,9 @@ module.exports = function (app) {
        *                    customers: [{
        *                         type: mongoose.Schema.Types.ObjectId,
        *                              ref: 'customers'}]   
+       *                    users: [{
+       *                         type: mongoose.Schema.Types.ObjectId,
+       *                              ref: 'users'}] 
      */
 
 

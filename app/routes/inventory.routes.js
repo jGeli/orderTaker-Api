@@ -17,13 +17,13 @@ module.exports = function (app) {
          *           Inventories:
          *              type: object
          *              properties:
-         *                    product_id: [{
+         *                    products: [{
          *                        type: mongoose.Schema.Types.ObjectId,
          *                             ref: 'products'}]
          *                    purchases: [{
          *                        type: mongoose.Schema.Types.ObjectId,
          *                             ref: 'purchases'}]
-         *                    price: [{
+         *                    pricings: [{
          *                        type: mongoose.Schema.Types.ObjectId,
          *                             ref: 'pricings'}]
          *                    description:

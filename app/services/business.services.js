@@ -20,13 +20,15 @@ class BusinessServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Business.find({ ...prop, isDeleted: false });
+        let resp = await Business.find({ ...prop, isDeleted: false })
+            .populate('purchases', 'users', 'inventories', 'orders', 'payments', 'customers');
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Business.findById(id);
+            let resp = await Business.findById(id).populate('purchases', 'users', 'inventories', 'orders', 'payments', 'customers');
             return resp;
         } catch (err) {
             return false

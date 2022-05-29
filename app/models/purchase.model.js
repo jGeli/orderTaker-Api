@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const purchase = mongoose.model(
     "purchases",
     new mongoose.Schema({
-        poduct_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "products"
-        },
         qty: String,
         price: String,
         total: String,
@@ -15,7 +11,11 @@ const purchase = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
+        },       
+        products: {
+            type: mongoose.Schema.Types.ObjectId,
+                ref: "products"
+        },
     },
         { timestamps: true }
     )

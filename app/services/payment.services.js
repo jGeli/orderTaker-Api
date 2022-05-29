@@ -20,13 +20,15 @@ class PaymentServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Payment.find({ ...prop, isDeleted: false });
+        let resp = await Payment.find({ ...prop, isDeleted: false })
+            .populate('orders', 'customers', 'businesses');
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Payment.findById(id);
+            let resp = await Payments.findById(id).populate('orders', 'customers', 'businesses');
             return resp;
         } catch (err) {
             return false

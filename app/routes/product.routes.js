@@ -23,7 +23,7 @@ module.exports = function (app) {
      *                        type: string
      *                    type:
      *                        type: string
-     *                    category: {
+     *                    categories: {
      *                        type: mongoose.Schema.Types.ObjectId,
      *                             ref: 'categories'}
      *                    notes:

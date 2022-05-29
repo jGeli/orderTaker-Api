@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const payment = mongoose.model(
     "payments",
     new mongoose.Schema({
-        order_id: [{
+        orders: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "orders"
             }],
-        customer_id: [{
+        customers: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "customers"
         }],
-        business_id: [{
+        businesses: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "businesses"
         }], 

@@ -5,7 +5,7 @@ const product = mongoose.model(
         name: String,
         description: String,
         type: String,
-        category: {
+        categories: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "categories"
         },
