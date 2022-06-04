@@ -26,6 +26,7 @@ require('dotenv').config()
      * /api/roles:
      *  get:
      *      summary: ROLE - GET ALL
+     *      tags: ['Roles']
      *      description: this api is used to fetch all roles from mongodb
      *      responses: 
      *          200:
@@ -49,6 +50,7 @@ require('dotenv').config()
   * /api/role/{id}:
   *  get:
   *      summary: ROLE - GET BY ID
+  *      tags: ['Roles'] 
   *      description: this api is used to fetch role by ID
   *      parameters:
   *          - in: path
@@ -68,7 +70,7 @@ require('dotenv').config()
   *                              $ref: '#components/schemas/Role'
   */
 
-   
+
 
 
     //ROLE - CREATE
@@ -77,6 +79,7 @@ require('dotenv').config()
    * /api/roles:
    *  post:
    *      summary: ROLE - CREATE
+   *      tags: ['Roles']
    *      description: this api is used to create role
    *      requestBody:
    *          required: true
@@ -88,7 +91,7 @@ require('dotenv').config()
    *          200:
    *              description: used to create roles
    */
- 
+
 
 
     //ROLE - UPDATE
@@ -97,6 +100,7 @@ require('dotenv').config()
   * /api/role/{id}:
   *  patch:
   *      summary: ROLE - UPDATE
+  *      tags: ['Roles'] 
   *      description: this api is used to update role data
   *      parameters:
   *          - in: path
@@ -121,7 +125,7 @@ require('dotenv').config()
   *                           items: 
   *                              $ref: '#components/schemas/Role'
   */
- 
+
 
 
 
@@ -131,6 +135,7 @@ require('dotenv').config()
    * /api/role/{id}:
    *  delete:
    *      summary: ROLE - DELETE BY ID
+   *      tags: ['Roles']
    *      description: this api is used to delete role by ID
    *      parameters:
    *          - in: path

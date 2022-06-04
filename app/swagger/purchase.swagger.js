@@ -31,6 +31,7 @@ require('dotenv').config()
    * /api/purchases:
    *  post:
    *      summary: PURCHASES - CREATE
+   *      tags: ['Purchases']
    *      description: this api is used to create purchases
    *      requestBody:
    *          required: true
@@ -42,7 +43,7 @@ require('dotenv').config()
    *          200:
    *              description: used to create purchases
    */
- 
+
 
     //PURCHASES - UPDATE
     /**
@@ -50,6 +51,7 @@ require('dotenv').config()
  * /api/purchase/{id}:
  *  patch:
  *      summary: PURCHASES - UPDATE
+ *      tags: ['Purchases']
  *      description: this api is used to update PURCHASES data
  *      parameters:
  *          - in: path
@@ -74,7 +76,7 @@ require('dotenv').config()
  *                           items: 
  *                              $ref: '#components/schemas/Purchases'
  */
-  
+
 
     //PURCHASES - GET ALL
     /**
@@ -82,6 +84,7 @@ require('dotenv').config()
   * /api/purchases:
   *  get:
   *      summary: PURCHASES - GET ALL
+  *      tags: ['Purchases'] 
   *      description: this api is used to fetch all purchases from mongodb
   *      responses: 
   *          200:
@@ -93,7 +96,7 @@ require('dotenv').config()
   *                           items: 
   *                              $ref: '#components/schemas/Purchases'
   */
- 
+
 
 
     //PURCHASES - GET BY ID
@@ -102,6 +105,7 @@ require('dotenv').config()
 * /api/purchase/{id}:
 *  get:
 *      summary: PURCHASES - GET BY ID
+*      tags: ['Purchases'] 
 *      description: this api is used to fetch purchasesby ID
 *      parameters:
 *          - in: path
@@ -120,7 +124,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Purchases'
 */
-    
+
 
     //PURCHASES - DELETE
     /**
@@ -128,6 +132,7 @@ require('dotenv').config()
    * /api/purchase/{id}:
    *  delete:
    *      summary: PURCHASES - DELETE BY ID
+   *      tags: ['Purchases']
    *      description: this api is used to delete purchase by ID
    *      parameters:
    *          - in: path

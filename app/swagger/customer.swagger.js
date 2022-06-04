@@ -34,6 +34,7 @@ require('dotenv').config()
      * /api/customers:
      *  get:
      *      summary: CUSTOMER - GET ALL
+     *      tags: ['Customers'] 
      *      description: this api is used to fetch all customers from mongodb
      *      responses: 
      *          200:
@@ -46,7 +47,7 @@ require('dotenv').config()
      *                              $ref: '#components/schemas/Customer'
      */
 
-   
+
 
 
     // CUSTOMER - GET BY ID
@@ -75,7 +76,7 @@ require('dotenv').config()
     *                              $ref: '#components/schemas/Customer'
     */
 
-    
+
 
 
     // CUSTOMER - CREATE
@@ -86,6 +87,7 @@ require('dotenv').config()
    * /api/customer:
    *  post:
    *      summary: CUSTOMER - CREATE
+   *      tags: ['Customers']
    *      description: this api is used to create customers
    *      requestBody:
    *          required: true
@@ -98,7 +100,7 @@ require('dotenv').config()
    *              description: used to create customers
    */
 
- 
+
 
     //CUSTOMER - UPDATE
     /**
@@ -106,6 +108,7 @@ require('dotenv').config()
   * /api/customer/{id}:
   *  patch:
   *      summary: CUSTOMER - UPDATE
+  *      tags: ['Customers'] 
   *      description: this api is used to update user data
   *      parameters:
   *          - in: path
@@ -132,15 +135,16 @@ require('dotenv').config()
   */
 
 
-  
 
-    //CUSTOMER - DELETE 
+
+    //CUSTOMER - DELETE
 
     /**
      * @swagger
      * /api/customer/{id}:
      *  delete:
      *      summary: CUSTOMER - DELETE BY ID
+     *      tags: ['Customers']
      *      description: this api is used to delete customer by ID
      *      parameters:
      *          - in: path

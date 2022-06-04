@@ -118,7 +118,7 @@ require('dotenv').config()
      *                           items: 
      *                              $ref: '#components/schemas/user'
      */
-   
+
 
 
     // USER - CREATE
@@ -141,7 +141,7 @@ require('dotenv').config()
      *          200:
      *              description: used to create users
      */
-  
+
 
    // USER - UPDATE
       /**
@@ -149,6 +149,7 @@ require('dotenv').config()
     * /api/user/{id}:
     *  patch:
     *      summary: USER - UPDATE
+    *      tags: ['Users'] 
     *      description: this api is used to update user data
     *      parameters:
     *          - in: path
@@ -173,15 +174,16 @@ require('dotenv').config()
     *                           items: 
     *                              $ref: '#components/schemas/User'
     */
-  
 
-    //USER - DELETE 
+
+    //USER - DELETE
 
     /**
      * @swagger
      * /api/user/{id}:
      *  delete:
      *      summary: USER - DELETE BY ID
+     *      tags: ['Users']
      *      description: this api is used to delete user by ID
      *      parameters:
      *          - in: path

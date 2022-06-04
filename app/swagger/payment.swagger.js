@@ -34,6 +34,7 @@ require('dotenv').config()
       * /api/payment:
       *  post:
       *      summary: PAYMENTS - CREATE
+      *      tags: ['Payments'] 
       *      description: this api is used to create Payments
       *      requestBody:
       *          required: true
@@ -45,7 +46,7 @@ require('dotenv').config()
       *          200:
       *              description: used to create Payments
       */
-  
+
 
     //Payments - Update
     /**
@@ -53,6 +54,7 @@ require('dotenv').config()
     * /api/payment/{id}:
     *  patch:
     *      summary: PAYMENTS - UPDATE
+    *      tags: ['Payments']      
     *      description: this api is used to update Payments data
     *      parameters:
     *          - in: path
@@ -86,6 +88,7 @@ require('dotenv').config()
        * /api/payments:
        *  get:
        *      summary: PAYMENTS- GET ALL
+       *      tags: ['Payments'] 
        *      description: this api is used to fetch all Payments from mongodb
        *      responses: 
        *          200:
@@ -97,7 +100,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Payments'
        */
-  
+
 
 
 
@@ -107,6 +110,7 @@ require('dotenv').config()
 * /api/payment/{id}:
 *  get:
 *      summary: PAYMENTS - GET BY ID
+*      tags: ['Payments']  
 *      description: this api is used to fetch Payments ID
 *      parameters:
 *          - in: path
@@ -125,7 +129,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Payments'
 */
-   
+
 
 
     //Payments - Delete
@@ -134,6 +138,7 @@ require('dotenv').config()
      * /api/payment/{id}:
      *  delete:
      *      summary: PAYMENTS - DELETE BY ID
+     *      tags: ['Payments'] 
      *      description: this api is used to delete Payments by ID
      *      parameters:
      *          - in: path

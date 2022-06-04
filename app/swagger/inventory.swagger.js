@@ -34,6 +34,7 @@ require('dotenv').config()
          * /api/inventory:
          *  post:
          *      summary: INVENTORIES - CREATE
+         *      tags: ['Inventories']
          *      description: this api is used to create inventory
          *      requestBody:
          *          required: true
@@ -52,6 +53,7 @@ require('dotenv').config()
       * /api/inventory/{id}:
       *  patch:
       *      summary: INVENTORIES - UPDATE
+      *      tags: ['Inventories'] 
       *      description: this api is used to update inventory data
       *      parameters:
       *          - in: path
@@ -76,13 +78,14 @@ require('dotenv').config()
       *                           items: 
       *                              $ref: '#components/schemas/Inventories'
       */
- 
+
     //Inventory - Get All
     /**
        * @swagger
        * /api/inventories:
        *  get:
        *      summary: INVENTORIES - GET ALL
+       *      tags: ['Inventories']
        *      description: this api is used to fetch all inventory from mongodb
        *      responses: 
        *          200:
@@ -94,7 +97,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Inventories'
        */
-   
+
 
     //Inventory - Get by ID
     /**
@@ -102,6 +105,7 @@ require('dotenv').config()
 * /api/inventory/{id}:
 *  get:
 *      summary: INVENTORIES - GET BY ID
+*      tags: ['Inventories']     
 *      description: this api is used to fetch inventory
 *      parameters:
 *          - in: path
@@ -120,7 +124,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Inventories'
 */
-    
+
 
 
     //Inventory - Delete
@@ -129,6 +133,7 @@ require('dotenv').config()
      * /api/inventory/{id}:
      *  delete:
      *      summary: INVENTORIES - DELETE BY ID
+     *      tags: ['Inventories']
      *      description: this api is used to delete inventory by ID
      *      parameters:
      *          - in: path

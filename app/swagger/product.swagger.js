@@ -27,6 +27,7 @@ require('dotenv').config()
     * /api/product:
     *  post:
     *      summary: PRODUCTS - CREATE
+    *      tags: ['Products'] 
     *      description: this api is used to create products
     *      requestBody:
     *          required: true
@@ -46,6 +47,7 @@ require('dotenv').config()
     * /api/product/{id}:
     *  patch:
     *      summary: PRODUCTS - UPDATE
+    *      tags: ['Products'] 
     *      description: this api is used to update Products data
     *      parameters:
     *          - in: path
@@ -71,7 +73,7 @@ require('dotenv').config()
     *                              $ref: '#components/schemas/Products'
     */
 
- 
+
 
     //Products - Get All
     /**
@@ -79,6 +81,7 @@ require('dotenv').config()
      * /api/products:
      *  get:
      *      summary: PRODUCTS- GET ALL
+     *      tags: ['Products']
      *      description: this api is used to fetch all Products from mongodb
      *      responses: 
      *          200:
@@ -90,7 +93,7 @@ require('dotenv').config()
      *                           items: 
      *                              $ref: '#components/schemas/Products'
      */
-   
+
 
 
     // Products - Get By ID
@@ -99,6 +102,7 @@ require('dotenv').config()
 * /api/product/{id}:
 *  get:
 *      summary: PRODUCTS - GET BY ID
+*      tags: ['Products'] 
 *      description: this api is used to fetch Products ID
 *      parameters:
 *          - in: path
@@ -117,7 +121,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Products'
 */
-   
+
 
 
     //Products - Delete
@@ -126,6 +130,7 @@ require('dotenv').config()
    * /api/product/{id}:
    *  delete:
    *      summary: PRODUCTS - DELETE BY ID
+   *      tags: ['Products']
    *      description: this api is used to delete Products by ID
    *      parameters:
    *          - in: path

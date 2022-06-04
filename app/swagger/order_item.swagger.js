@@ -31,6 +31,7 @@ require('dotenv').config()
          * /api/order_item:
          *  post:
          *      summary: ORDER_ITEMS - CREATE
+         *      tags: ['Order_Items']
          *      description: this api is used to create Order_items
          *      requestBody:
          *          required: true
@@ -42,7 +43,7 @@ require('dotenv').config()
          *          200:
          *              description: used to create Orders
          */
-  
+
 
     //Order_Item - Update
     /**
@@ -50,6 +51,7 @@ require('dotenv').config()
       * /api/order_item/{id}:
       *  patch:
       *      summary: ORDER_ITEMS - UPDATE
+      *      tags: ['Order_Items'] 
       *      description: this api is used to update Order_items data
       *      parameters:
       *          - in: path
@@ -74,13 +76,14 @@ require('dotenv').config()
       *                           items: 
       *                              $ref: '#components/schemas/Order_items'
       */
-   
+
     //Order_Item - Get All
     /**
        * @swagger
        * /api/order_items:
        *  get:
        *      summary: ORDER_ITEMS - GET ALL
+       *      tags: ['Order_Items']
        *      description: this api is used to fetch all Order_items from mongodb
        *      responses: 
        *          200:
@@ -92,7 +95,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Order_items'
        */
-    
+
 
 
     //Order_Item - Get by ID
@@ -101,6 +104,7 @@ require('dotenv').config()
 * /api/order_item/{id}:
 *  get:
 *      summary: ORDER_ITEMS - GET BY ID
+*      tags: ['Order_Items']       
 *      description: this api is used to fetch Order_items
 *      parameters:
 *          - in: path
@@ -119,7 +123,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Order_items'
 */
-    
+
 
 
     //Order_Item - Delete
@@ -128,6 +132,7 @@ require('dotenv').config()
      * /api/order_item/{id}:
      *  delete:
      *      summary: ORDER_ITEMS - DELETE BY ID
+     *      tags: ['Order_Items']
      *      description: this api is used to delete Order_items by ID
      *      parameters:
      *          - in: path

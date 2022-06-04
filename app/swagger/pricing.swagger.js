@@ -29,6 +29,7 @@ require('dotenv').config()
      * /api/pricings:
      *  get:
      *      summary: PRICING - GET ALL
+     *      tags: ['Pricing']
      *      description: this api is used to fetch all Pricing from mongodb
      *      responses: 
      *          200:
@@ -41,7 +42,7 @@ require('dotenv').config()
      *                              $ref: '#components/schemas/Pricing'
      */
 
-   
+
 
 
     // PRICING - GET BY ID
@@ -51,6 +52,7 @@ require('dotenv').config()
 * /api/pricing/{id}:
 *  get:
 *      summary: PRICING - GET BY ID
+*      tags: ['Pricing'] 
 *      description: this api is used to fetch Pricing ID
 *      parameters:
 *          - in: path
@@ -69,7 +71,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Pricing'
 */
-  
+
 
 
     // PRICING - CREATE
@@ -79,6 +81,7 @@ require('dotenv').config()
       * /api/pricing:
       *  post:
       *      summary: PRICING - CREATE
+      *      tags: ['Pricing'] 
       *      description: this api is used to create Pricing
       *      requestBody:
       *          required: true
@@ -99,6 +102,7 @@ require('dotenv').config()
      * /api/pricing/{id}:
      *  patch:
      *      summary: PRICING - UPDATE
+     *      tags: ['Pricing']
      *      description: this api is used to update Pricing data
      *      parameters:
      *          - in: path
@@ -132,6 +136,7 @@ require('dotenv').config()
    * /api/pricing/{id}:
    *  delete:
    *      summary: PRICING - DELETE BY ID
+   *      tags: ['Pricing']
    *      description: this api is used to delete Pricing by ID
    *      parameters:
    *          - in: path

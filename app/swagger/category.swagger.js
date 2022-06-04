@@ -23,6 +23,7 @@ require('dotenv').config()
          * /api/category:
          *  post:
          *      summary: CATEGORIES - CREATE
+         *      tags: ['Categories']
          *      description: this api is used to create Categories
          *      requestBody:
          *          required: true
@@ -34,13 +35,14 @@ require('dotenv').config()
          *          200:
          *              description: used to create Categories
          */
-   
+
     //Category - Update
     /**
       * @swagger
       * /api/category/{id}:
       *  patch:
       *      summary: CATEGORIES - UPDATE
+      *      tags: ['Categories'] 
       *      description: this api is used to update Categories data
       *      parameters:
       *          - in: path
@@ -65,13 +67,14 @@ require('dotenv').config()
       *                           items: 
       *                              $ref: '#components/schemas/Categories'
       */
-  
+
     //Category - Get All
     /**
        * @swagger
        * /api/categories:
        *  get:
        *      summary: CATEGORIES - GET ALL
+       *      tags: ['Categories']
        *      description: this api is used to fetch all Categories from mongodb
        *      responses: 
        *          200:
@@ -83,7 +86,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Categories'
        */
-   
+
 
     //Category - Get by ID
     /**
@@ -91,6 +94,7 @@ require('dotenv').config()
 * /api/category/{id}:
 *  get:
 *      summary: CATEGORIES - GET BY ID
+*      tags: ['Categories']         
 *      description: this api is used to fetch Categories
 *      parameters:
 *          - in: path
@@ -109,7 +113,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Categories'
 */
-   
+
 
 
     //Category - Delete
@@ -118,6 +122,7 @@ require('dotenv').config()
      * /api/category/{id}:
      *  delete:
      *      summary: CATEGORIES - DELETE BY ID
+     *      tags: ['Categories']
      *      description: this api is used to delete Categories by ID
      *      parameters:
      *          - in: path

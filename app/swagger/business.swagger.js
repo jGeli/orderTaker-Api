@@ -48,6 +48,7 @@ require('dotenv').config()
          * /api/business:
          *  post:
          *      summary: BUSINESS - CREATE
+         *      tags: ['Businesses']
          *      description: this api is used to create Businesses
          *      requestBody:
          *          required: true
@@ -59,7 +60,7 @@ require('dotenv').config()
          *          200:
          *              description: used to create Business
          */
- 
+
 
     //Business - Update
     /**
@@ -67,6 +68,7 @@ require('dotenv').config()
       * /api/business/{id}:
       *  patch:
       *      summary: BUSINESS - UPDATE
+      *      tags: ['Businesses'] 
       *      description: this api is used to update Business data
       *      parameters:
       *          - in: path
@@ -99,6 +101,7 @@ require('dotenv').config()
        * /api/businesses:
        *  get:
        *      summary: BUSINESS - GET ALL
+       *      tags: ['Businesses']
        *      description: this api is used to fetch all Business from mongodb
        *      responses: 
        *          200:
@@ -110,7 +113,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Business'
        */
-  
+
 
     //Business - Get by ID
     /**
@@ -118,6 +121,7 @@ require('dotenv').config()
 * /api/business/{id}:
 *  get:
 *      summary: BUSINESS - GET BY ID
+*      tags: ['Businesses']
 *      description: this api is used to fetch Business
 *      parameters:
 *          - in: path
@@ -136,7 +140,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Business'
 */
-    
+
 
 
     //Business - Delete
@@ -145,6 +149,7 @@ require('dotenv').config()
      * /api/business/{id}:
      *  delete:
      *      summary: BUSINESS - DELETE BY ID
+     *      tags: ['Businesses']
      *      description: this api is used to delete Business by ID
      *      parameters:
      *          - in: path

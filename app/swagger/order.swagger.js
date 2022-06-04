@@ -34,6 +34,7 @@ require('dotenv').config()
         * /api/order:
         *  post:
         *      summary: ORDERS - CREATE
+        *      tags: ['Orders'] 
         *      description: this api is used to create orders
         *      requestBody:
         *          required: true
@@ -45,7 +46,7 @@ require('dotenv').config()
         *          200:
         *              description: used to create Orders
         */
- 
+
 
     //Orders - Update
     /**
@@ -53,6 +54,7 @@ require('dotenv').config()
       * /api/order/{id}:
       *  patch:
       *      summary: ORDERS - UPDATE
+      *      tags: ['Orders'] 
       *      description: this api is used to update Orders data
       *      parameters:
       *          - in: path
@@ -85,6 +87,7 @@ require('dotenv').config()
        * /api/orders:
        *  get:
        *      summary: ORDERS- GET ALL
+       *      tags: ['Orders']
        *      description: this api is used to fetch all Orders from mongodb
        *      responses: 
        *          200:
@@ -96,7 +99,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Orders'
        */
-   
+
 
 
     //Orders - Get by ID
@@ -105,6 +108,7 @@ require('dotenv').config()
 * /api/order/{id}:
 *  get:
 *      summary: ORDERS - GET BY ID
+*      tags: ['Orders'] 
 *      description: this api is used to fetch Orders
 *      parameters:
 *          - in: path
@@ -123,7 +127,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Orders'
 */
-    
+
 
 
     //Orders - Delete
@@ -132,6 +136,7 @@ require('dotenv').config()
      * /api/order/{id}:
      *  delete:
      *      summary: ORDERS - DELETE BY ID
+     *      tags: ['Orders']
      *      description: this api is used to delete Orders by ID
      *      parameters:
      *          - in: path

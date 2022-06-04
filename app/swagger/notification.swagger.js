@@ -30,6 +30,7 @@ require('dotenv').config()
          * /api/notification:
          *  post:
          *      summary: NOTIFICATIONS - CREATE
+         *      tags: ['Notifications']
          *      description: this api is used to create Notifications
          *      requestBody:
          *          required: true
@@ -41,7 +42,7 @@ require('dotenv').config()
          *          200:
          *              description: used to create Notifications
          */
-    
+
 
     //Notifications - Update
     /**
@@ -49,6 +50,7 @@ require('dotenv').config()
       * /api/notification/{id}:
       *  patch:
       *      summary: NOTIFICATIONS - UPDATE
+      *      tags: ['Notifications']
       *      description: this api is used to update Notifications data
       *      parameters:
       *          - in: path
@@ -73,7 +75,7 @@ require('dotenv').config()
       *                           items: 
       *                              $ref: '#components/schemas/Notifications'
       */
-  
+
 
     //Notifications - Get All
     /**
@@ -81,6 +83,7 @@ require('dotenv').config()
        * /api/notifications:
        *  get:
        *      summary: NOTIFICATIONS - GET ALL
+       *      tags: ['Notifications']
        *      description: this api is used to fetch all Notifications from mongodb
        *      responses: 
        *          200:
@@ -92,7 +95,7 @@ require('dotenv').config()
        *                           items: 
        *                              $ref: '#components/schemas/Notifications'
        */
-  
+
 
     //Notifications -  Get by ID
     /**
@@ -100,6 +103,7 @@ require('dotenv').config()
 * /api/notification/{id}:
 *  get:
 *      summary: NOTIFICATIONS - GET BY ID
+*      tags: ['Notifications'] 
 *      description: this api is used to fetch Notifications
 *      parameters:
 *          - in: path
@@ -118,7 +122,7 @@ require('dotenv').config()
 *                           items: 
 *                              $ref: '#components/schemas/Notifications'
 */
-   
+
 
 
     //Notifications - Delete
@@ -127,6 +131,7 @@ require('dotenv').config()
      * /api/notification/{id}:
      *  delete:
      *      summary: NOTIFICATIONS - DELETE BY ID
+     *      tags: ['Notifications']  
      *      description: this api is used to delete Notifications by ID
      *      parameters:
      *          - in: path
