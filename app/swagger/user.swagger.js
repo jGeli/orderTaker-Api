@@ -71,6 +71,7 @@ require('dotenv').config()
      * /api/users:
      *  get:
      *      summary: USER - GET ALL
+     *      tags: ['Users']
      *      description: this api is used to fetch all users from mongodb
      *      responses: 
      *          200:
@@ -98,6 +99,7 @@ require('dotenv').config()
      * /api/user/{id}:
      *  get:
      *      summary: USER - GET BY ID
+     *      tags: ['Users']
      *      description: this api is used to fetch user by ID
      *      parameters:
      *          - in: path
@@ -127,6 +129,7 @@ require('dotenv').config()
      * /api/user:
      *  post:
      *      summary: USER - CREATE
+     *      tags: ['Users']
      *      description: this api is used to create users
      *      requestBody:
      *          required: true

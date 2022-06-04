@@ -58,6 +58,7 @@ require('dotenv').config()
     * /api/customer/{id}:
     *  get:
     *      summary: CUSTOMER - GET BY ID
+    *      tags: ['Customers']
     *      description: this api is used to fetch customer by ID
     *      parameters:
     *          - in: path
