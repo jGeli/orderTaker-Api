@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const business = mongoose.model(
-    "businesses",
+    "business",
     new mongoose.Schema({
         name: String,
         address: String,
@@ -54,7 +54,19 @@ const business = mongoose.model(
         // type: mongoose.Schema.Types.ObjectId, 
         // ref: "customers"
         // }
-        // ],       
+        // ],  
+        owner: 
+            {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "users"
+            }
+            ,   
+       users: [
+        {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "users"
+        }
+        ],   
     }
         )    
 );

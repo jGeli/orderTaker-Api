@@ -9,6 +9,10 @@ const product = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "categories"
         }],
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
         notes: String,
         isDeleted: {
          type: Boolean, 

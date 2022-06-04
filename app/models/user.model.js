@@ -35,12 +35,11 @@ const User = mongoose.model(
         ref: "notifcations"
       }
     ],
-    business: [
+    business:
       {
          type: mongoose.Schema.Types.ObjectId,
-         ref: "businesses"
+         ref: "business"
       }
-     ]
   },
     { timestamps: true }
   )

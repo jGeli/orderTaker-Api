@@ -6,42 +6,67 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 const UserService = require('../services/user.services');
-const { validateLoginData, validateSignupData } = require('../utils/validator');
+const BusinessService = require('../services/business.services');
+
+const { validateLoginData, validateSignupData, validateBusinessData } = require('../utils/validator');
 
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
+  let { isOwner } = req.body;
+  let { valid: valid1, errors: errors1 } = validateSignupData(req.body);
+  if(!valid1) return res.status(404).json({ message: { text: 'Something went wrong in user!', type: 'error' }, errors1 });
 
-  let { valid, errors } = validateSignupData(req.body);
-  if(!valid) return res.status(404).json({ message: { text: 'Something went wrong!', type: 'error' }, errors });
+  
 
+  let { business_name, business_address, business_contact, business_email_address, firstName, lastName, contact,  gender, roles, birthDate, address, username, email_address, password } = req.body;
+
+  let bus = isOwner && await BusinessService.createRecord({
+      name: business_name,
+      address: business_address,
+      contact: business_contact,
+      email_address: business_email_address
+  });
 
   const user = new User({
-    username: req.body.username,
-    email_address: req.body.email_address,
-    password: bcrypt.hashSync(req.body.password, 8)
+    firstName,
+    lastName,
+    birthDate,
+    contact,
+    address,
+    gender,
+    username,
+    email_address,
+    password: bcrypt.hashSync(password, 8),
+    business: isOwner ? bus._id : null 
   });
-  user.save((err, user) => {
+
+
+
+  user.save( async (err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({  message: { text: 'Something went wrong!', type: 'error' }});
       return;
     }
-    if (req.body.roles) {
+
+   await BusinessService.updateRecord(bus._id, {owner: user._id})
+
+    if (roles) {
       Role.find(
         {
-          title: { $in: req.body.roles }
+          title: { $in: roles }
         },
         (err, roles) => {
           if (err) {
-            res.status(500).send({ message: err });
+            res.status(500).send({ message: { text: 'Something went wrong!', type: 'error' } });
             return;
           }
           user.roles = roles.map(role => role._id);
           user.save(err => {
             if (err) {
-              res.status(500).send({ message: err });
+              res.status(500).send({  message: { text: 'Something went wrong!', type: 'error' }});
               return;
             }
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: { text: "User was registered successfully!", type: 'success'  }});
           });
         }
       );
@@ -63,6 +88,8 @@ exports.signup = (req, res) => {
     }
   });
 };
+
+
 exports.signin = (req, res) => {
 
   let { valid, errors } = validateLoginData(req.body);

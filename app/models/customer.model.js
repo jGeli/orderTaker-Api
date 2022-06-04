@@ -10,6 +10,10 @@ const customer = mongoose.model(
         contact: String,
         address: String,
         notes: String,
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
         isDeleted: {
             type: Boolean,
             default: false

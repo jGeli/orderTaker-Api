@@ -11,15 +11,19 @@ const inventory = mongoose.model(
         inStocks: String,
         price: String,
         notes: String,
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
         isDeleted: {
             type: Boolean,
             default: false
         },
-          product: [
+          product: 
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "product"
-            }],
+            },
           price: [
               {
             type: mongoose.Schema.Types.Array,

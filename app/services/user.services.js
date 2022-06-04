@@ -19,7 +19,7 @@ class UserServices {
 
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false }).populate('roles');
+          let resp =  await User.find({ ...prop, isDeleted: false }).populate(['roles', 'business']);
           ;
           return resp
     }

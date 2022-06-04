@@ -7,11 +7,11 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     username: req.body.username
   }).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({message: { text: "Something went wrong!" , type: 'error' }});
       return;
     }
     if (user) {
-      res.status(400).send({ message: "Failed! Username is already in use!" });
+      res.status(400).send({message: { text: "Failed! Username is already in use!" , type: 'error' }});
       return;
     }
     // Email
@@ -19,17 +19,18 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       email_address: req.body.email_address
     }).exec((err, user) => {
       if (err) {
-        res.status(500).send({ message: err });
+        res.status(500).send({ message: { text: "Something went wrong!" , type: 'error' }});  
         return;
       }
       if (user) {
-        res.status(400).send({ message: "Failed! Email is already in use!" });
+        res.status(400).send({ message: { text: "Failed! Email is already in use!" , type: 'error' } });
         return;
       }
       next();
     });
   });
 };
+
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {

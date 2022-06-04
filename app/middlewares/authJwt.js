@@ -6,11 +6,11 @@ const Role = db.role;
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
   if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+    return res.status(403).send({ message: { text: "No token provided!", type: 'error' } });
   }
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
+      return res.status(401).send({ message: { text: "Unauthorized!" , type: 'error' }});
     }
     req.userId = decoded.id;
     next();
@@ -19,7 +19,7 @@ verifyToken = (req, res, next) => {
 isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({message: { text: "Something went wrong!" , type: 'error' }});
       return;
     }
     Role.find(
@@ -28,7 +28,7 @@ isAdmin = (req, res, next) => {
       },
       (err, roles) => {
         if (err) {
-          res.status(500).send({ message: err });
+          res.status(500).send({ message: { text: "Something went wrong!" , type: 'error' } });
           return;
         }
         for (let i = 0; i < roles.length; i++) {
@@ -37,7 +37,7 @@ isAdmin = (req, res, next) => {
             return;
           }
         }
-        res.status(403).send({ message: "Require Admin Role!" });
+        res.status(403).send({ message: { text: "Require Admin Role!" , type: 'error' } });
         return;
       }
     );
@@ -46,7 +46,7 @@ isAdmin = (req, res, next) => {
 isModerator = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
+      res.status(500).send({message: { text: "Something went wrong!" , type: 'error' } });
       return;
     }
     Role.find(
@@ -55,7 +55,7 @@ isModerator = (req, res, next) => {
       },
       (err, roles) => {
         if (err) {
-          res.status(500).send({ message: err });
+          res.status(500).send({ message: { text: "Something went wrong!" , type: 'error' } });
           return;
         }
         for (let i = 0; i < roles.length; i++) {
@@ -64,7 +64,7 @@ isModerator = (req, res, next) => {
             return;
           }
         }
-        res.status(403).send({ message: "Require Moderator Role!" });
+        res.status(403).send({ message: { text: "Require Moderator Role!" , type: 'error' } });
         return;
       }
     );

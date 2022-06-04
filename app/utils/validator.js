@@ -62,6 +62,20 @@ const isBD = (data) => {
   const validateSignupData = (data) => {
     let errors = {};
   
+    
+
+
+  if (isEmpty(data.firstName)) errors.firstName = 'First Name must not be empty';
+  
+  if (isEmpty(data.lastName)) errors.lastName = 'Last Name must not be empty';
+
+  if (isEmpty(data.birthDate)) errors.birthDate = 'Birth Date must not be empty';
+
+  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
+
+  if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
+
+  if (isEmpty(data.address)) errors.address = 'address must not be empty';
     if (isEmpty(data.email_address)) errors.email_address = 'Email address must not be empty';
     if (!isEmail(data.email_address)) errors.email_address = 'Email address must be a valid email';
     if (isEmpty(data.username)) errors.username = 'Username must not be empty';
@@ -171,15 +185,15 @@ const validatePurchaseData = (data) => {
 const validateBusinessData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.name)) errors.name = 'name must not be empty';
+  if (isEmpty(data.business_name)) errors.business_name = 'Business name must not be empty';
 
-  if (isEmpty(data.address)) errors.address = 'address must not be empty';
+  if (isEmpty(data.business_address)) errors.business_address = 'Business address must not be empty';
 
-  if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
+  if (isEmpty(data.business_contact)) errors.business_contact = 'Business contact must not be empty';
 
-  if (isEmpty(data.email_address)) errors.email_address = 'email_address must not be empty';
+  if (isEmpty(data.business_email_address)) errors.business_email_address = 'Business email_address must not be empty';
 
-  if (isEmpty(data.type)) errors.type = 'type must not be empty';
+  // if (isEmpty(data.type)) errors.type = 'type must not be empty';
 
   // if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
 

@@ -9,6 +9,10 @@ const purchased = mongoose.model(
         type: String,
         purchaseBy: String,
         notes: String,
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
         isDeleted: {
             type: Boolean,
             default: false

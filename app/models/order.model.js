@@ -25,8 +25,11 @@ const order = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
-     
+        },
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
 
     })
 );

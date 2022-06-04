@@ -20,7 +20,7 @@ class BusinessServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Business.find({ ...prop, isDeleted: false });
+        let resp = await Business.find({ ...prop, isDeleted: false }).populate(['owner']);
         return resp
     }
 

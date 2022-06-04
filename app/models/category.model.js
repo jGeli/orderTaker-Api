@@ -5,6 +5,10 @@ const category = mongoose.model(
         name: String,
         description: String,
         notes: String,
+        business: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "business"
+        },
         isDeleted: {
             type: Boolean,
             default: false
