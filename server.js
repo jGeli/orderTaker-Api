@@ -21,13 +21,15 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'orderTaker-Api',
+      title: 'BugTech - Order Taker Api',
       version: '1.0.0'
     },
     servers: [
       {
-        servers: 'mongodb://docampaign.online:27017/order_taker',
         url: 'http://localhost:23000/'
+      },
+      {
+        url: 'https://docampaign.online:23000'
       }
     ]
   },

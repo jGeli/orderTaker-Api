@@ -21,9 +21,15 @@ exports.handleCreate = async (req, res) => {
 
 
 exports.handleGetById = async (req, res) => {
+  try {
+
   let { id } = req.params;
-  resp = await UserServices.getById(id);
+  let resp = await UserServices.getById(id);
+  console.log(resp)
   res.status(200).json({ message: "Fetch Success", data: resp });
+   } catch (err) {
+    res.status(400).json({ message: "Something went wronged!", errors: err });
+  }
 };
 
 exports.handleGetAll = async (req, res) => {

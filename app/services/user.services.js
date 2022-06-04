@@ -25,10 +25,15 @@ class UserServices {
 
     static async getById(id){
         try{
-            let resp = await User.findById(id).populate('roles', 'notifications', 'businesses');
+            let resp = await User.findById(id).populate([
+                                                         'roles',
+                                                         'notifications',
+                                                         'business'
+                                                        ]);
             return resp;
         } catch (err) {
-            return false
+            console.log(err)
+            throw err
         }
     }
 
@@ -36,6 +41,7 @@ class UserServices {
         let resp = await User.findByIdAndUpdate(id, { isDeleted: true });
         return resp;
     }
+
 }
 
 

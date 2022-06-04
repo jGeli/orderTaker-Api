@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Notification = mongoose.model(
-    "Notifications",
+    "notifications",
     new mongoose.Schema({
         title: String,
         content: String,
