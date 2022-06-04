@@ -26,7 +26,7 @@ class BusinessServices {
 
     static async getById(id) {
         try {
-            let resp = await Business.findById(id);
+            let resp = await Business.findById(id).populate(['purchases', 'users', 'inventories', 'orders', 'payments', 'customers']);
             return resp;
         } catch (err) {
             return false

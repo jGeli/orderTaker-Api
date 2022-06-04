@@ -19,14 +19,16 @@ class PurchaseServices {
 
 
 
-    static async getAll(prop = {}) {
-        let resp = await Purchase.find({ ...prop, isDeleted: false });
-        return resp;
+    static async getAll(prop = {}){
+        let resp = await Purchase.find({ ...prop, isDeleted: false })
+            .populate('products');
+        
+        return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Purchase.findById(id);
+            let resp = await Purchase.findById(id).populate('products');
             return resp;
         } catch (err) {
             return false

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const purchased = mongoose.model(
+const purchase = mongoose.model(
     "purchases",
     new mongoose.Schema({
-        poduct_id: String,
         qty: String,
         price: String,
         total: String,
@@ -16,9 +15,13 @@ const purchased = mongoose.model(
         isDeleted: {
             type: Boolean,
             default: false
-        }
+        },       
+        products: {
+            type: mongoose.Schema.Types.ObjectId,
+                ref: "products"
+        },
     },
         { timestamps: true }
     )
 );
-module.exports = purchased;
+module.exports = purchase;

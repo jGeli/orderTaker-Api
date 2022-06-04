@@ -5,9 +5,9 @@ const Payment = db.payments;
 class PaymentServices {
 
     static async createRecord(prop) {
-        const { title, notes } = prop
+        const { order_id, customer_id, business_id, description, amount, type, receiveBy } = prop
 
-        let resp = await Payment.create({ title, notes });
+        let resp = await Payment.create({ order_id, customer_id, business_id, description, amount, type, receiveBy });
         return resp
     }
 
@@ -20,13 +20,15 @@ class PaymentServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Payment.find({ ...prop, isDeleted: false });
+        let resp = await Payment.find({ ...prop, isDeleted: false })
+            .populate('orders', 'customers', 'businesses');
+        ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Payment.findById(id);
+            let resp = await Payments.findById(id).populate('orders', 'customers', 'businesses');
             return resp;
         } catch (err) {
             return false

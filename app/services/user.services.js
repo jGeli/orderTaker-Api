@@ -20,13 +20,12 @@ class UserServices {
         
    static async getAll(prop = {}){
           let resp =  await User.find({ ...prop, isDeleted: false }).populate(['roles', 'business']);
-          ;
           return resp
     }
 
     static async getById(id){
         try{
-            let resp = await User.findById(id).populate('roles');
+            let resp = await User.findById(id).populate('roles', 'notifications', 'businesses');
             return resp;
         } catch (err) {
             return false

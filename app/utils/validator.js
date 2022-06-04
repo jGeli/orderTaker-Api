@@ -132,6 +132,13 @@ const validateUserData = (data) => {
 
   if (isEmpty(data.address)) errors.address = 'address must not be empty';
 
+  if (isEmpty(data.roles)) errors.roles = 'roles must not be empty';
+
+  if (isEmpty(data.businesses)) errors.businesses = 'businesses must not be empty';
+
+  
+
+
   return {
     errors,
     valid: Object.keys(errors).length === 0 ? true : false
@@ -143,7 +150,7 @@ const validateNotificationData = (data) => {
 
   if (isEmpty(data.title)) errors.title = 'Title must not be empty';
 
-  if (isEmpty(data.content)) errors.content = 'contentmust not be empty';
+  if (isEmpty(data.content)) errors.content = 'contents must not be empty';
 
   if (isEmpty(data.type)) errors.type = 'type must not be empty';
 
@@ -160,7 +167,7 @@ const validateNotificationData = (data) => {
 const validatePurchaseData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.product_id)) errors.product_id = 'product_id must not be empty';
+  if (isEmpty(data.products)) errors.products = 'products must not be empty';
 
   if (isEmpty(data.qty)) errors.qty = 'qty not be empty';
 
@@ -195,13 +202,17 @@ const validateBusinessData = (data) => {
 
   // if (isEmpty(data.type)) errors.type = 'type must not be empty';
 
-  // if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
+  if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
 
-  // if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
+  if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
 
-  // if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
+  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
 
-  // if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
+  if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
+
+  if (isEmpty(data.users)) errors.users = 'users must not be empty';
+
+
 
   return {
     errors,
@@ -233,13 +244,13 @@ const validateProductData = (data) => {
 const validateInventoryData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.product_id)) errors.product_id = 'product_id must not be empty';
+  if (isEmpty(data.products)) errors.products = 'products must not be empty';
 
-  if (isEmpty(data.purchases_id)) errors.purchases_id = 'purchases_id must not be empty';
+  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
 
   if (isEmpty(data.inStocks)) errors.inStocks = 'inStocks must not be empty';
 
-  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+  if (isEmpty(data.pricings)) errors.pricings = 'pricings must not be empty';
 
 
   return {
@@ -253,11 +264,13 @@ const validateInventoryData = (data) => {
 const validatePaymentData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.order_id)) errors.order_id = 'order_id must not be empty';
+  if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
 
-  if (isEmpty(data.customer_id)) errors.customer_id = 'customer_id must not be empty';
+  if (isEmpty(data.customers)) errors.customers = 'customers must not be empty';
 
-  if (isEmpty(data.business_id)) errors.business_id = 'business_idmust not be empty';
+  if (isEmpty(data.businesses)) errors.businesses = 'businesses must not be empty';
+
+  if (isEmpty(data.description)) errors.description = 'description must not be empty';
 
   if (isEmpty(data.amount)) errors.amount = 'amount must not be empty';
 
@@ -316,11 +329,11 @@ const validateCategoryData = (data) => {
 const validateOrder_itemData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.inventory_id)) errors.inventory_id = 'inventory_id must not be empty';
+  if (isEmpty(data.inventories)) errors.inventories = 'inventories must not be empty';
 
   if (isEmpty(data.qty)) errors.qty = 'qty must not be empty';
 
-  if (isEmpty(data.price)) errors.price = 'price must not be empty';
+  if (isEmpty(data.pricings)) errors.pricings = 'pricings must not be empty';
 
   if (isEmpty(data.subtotal)) errors.subtotal = 'subtotal must not be empty';
 
@@ -345,6 +358,8 @@ const validateOrderData = (data) => {
 
   if (isEmpty(data.customer_id)) errors.customer_id = 'customer_id must not be empty';
 
+  if (isEmpty(data.recordedBy)) errors.recordedBy = 'recordedBy must not be empty';
+
   return {
     errors,
     valid: Object.keys(errors).length === 0 ? true : false
@@ -361,6 +376,8 @@ const validatePricingData = (data) => {
 
 
   if (isEmpty(data.price)) errors.price = 'price must not be empty';
+
+  if (isEmpty(data.description)) errors.description = 'description must not be empty';
 
 
   return {

@@ -2,8 +2,18 @@ const mongoose = require("mongoose");
 const payment = mongoose.model(
     "payments",
     new mongoose.Schema({
-        order_id: String,
-        customer_id: String,
+        orders: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "orders"
+            }],
+        customers: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "customers"
+        }],
+        businesses: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "businesses"
+        }], 
         description: String,
         amount: String,
         type: String,
