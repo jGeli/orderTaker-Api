@@ -1,13 +1,13 @@
 const db = require('../models');
 
-const Business = db.businesses;
+const Business = db.business;
 
 class BusinessServices {
 
     static async createRecord(prop) {
-        const { name, address, contact, email_address, type, notes, purchases } = prop
+        const { name, address, contact, email_address, type, notes, purchases, users, inventories, orders, payments, customers } = prop
 
-        let resp = await Business.create({ name, address, contact, email_address, type, notes, purchases });
+        let resp = await Business.create({ name, address, contact, email_address, type, notes, purchases, users, inventories, orders, payments, customers });
         return resp
     }
 
@@ -20,7 +20,7 @@ class BusinessServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Business.find({ ...prop, isDeleted: false }).populate(['owner']);
+        let resp = await Business.find({ ...prop, isDeleted: false }).populate(['purchases', 'users', 'inventories', 'orders', 'payments', 'customers']);
         return resp
     }
 

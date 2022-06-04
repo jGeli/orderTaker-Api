@@ -1,3 +1,4 @@
+const { business } = require('../models');
 const db = require('../models');
 
 const Payment = db.payments;
@@ -5,9 +6,9 @@ const Payment = db.payments;
 class PaymentServices {
 
     static async createRecord(prop) {
-        const { order_id, customer_id, business_id, description, amount, type, receiveBy } = prop
+        const {orders, customers, business, description, amount, type, receivedBy, notes } = prop
 
-        let resp = await Payment.create({ order_id, customer_id, business_id, description, amount, type, receiveBy });
+        let resp = await Payment.create({ orders, customers, business, description, amount, type, receivedBy, notes });
         return resp
     }
 
@@ -21,14 +22,14 @@ class PaymentServices {
 
     static async getAll(prop = {}) {
         let resp = await Payment.find({ ...prop, isDeleted: false })
-            .populate('orders', 'customers', 'businesses');
+            .populate(['orders', 'customers', 'business']);
         ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Payments.findById(id).populate('orders', 'customers', 'businesses');
+            let resp = await Payment.findById(id).populate(['orders', 'customers', 'business']);
             return resp;
         } catch (err) {
             return false

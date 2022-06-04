@@ -5,9 +5,9 @@ const Product = db.products;
 class ProductServices {
 
     static async createRecord(prop) {
-        const { name, description, type, categories_id, notes } = prop
+        const { name, description, type, categories, notes } = prop
 
-        let resp = await Product.create({ name, description, type, categories_id, notes });
+        let resp = await Product.create({ name, description, type, categories, notes });
         return resp
     }
 
@@ -21,14 +21,14 @@ class ProductServices {
 
     static async getAll(prop = {}) {
         let resp = await Product.find({ ...prop, isDeleted: false })
-            .populate('categories');
+            .populate(['categories']);
 
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Product.findById(id).populate('categories');
+            let resp = await Product.findById(id).populate(['categories']);
             return resp;
         } catch (err) {
             return false

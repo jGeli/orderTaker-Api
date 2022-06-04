@@ -29,10 +29,10 @@ const User = mongoose.model(
       }
     ],
     business:
-      {
+      [{
          type: mongoose.Schema.Types.ObjectId,
          ref: "business"
-      }
+      }]
   },
     { timestamps: true }
   )

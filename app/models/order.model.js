@@ -6,7 +6,6 @@ const order = mongoose.model(
         order_no: String,
         total_amount: String,
         recordedBy: String,
-        notes: String,
         recordedBy: String,
         notes: String,
         customers: {
@@ -16,7 +15,7 @@ const order = mongoose.model(
         order_items: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "order_item"
+                ref: "order_items"
             }
         ],
         isPaid: {
@@ -31,10 +30,7 @@ const order = mongoose.model(
             type: Boolean,
             default: false
         },
-        business: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "business"
-        },
+    
 
     },
         { timestamps: true }

@@ -4,9 +4,10 @@ const User = db.users;
 
 class UserServices {
     static async createRecord(prop) {
-        const { username, email_address, password } = prop
+        const { username, email_address, password, roles, notifications, business } = prop
 
-        let resp = await User.create({ username, email_address, password
+        let resp = await User.create({
+            username, email_address, password, roles, notifications, business
 });
         return resp
     }
@@ -19,15 +20,14 @@ class UserServices {
 
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false }).populate(['roles', 'business']);
+          let resp =  await User.find({ ...prop, isDeleted: false }).populate(['roles', 'notifications', 'business']);
           return resp
     }
 
     static async getById(id){
         try{
             let resp = await User.findById(id).populate([
-                                                         'roles',
-                                                         'notifications',
+                                                         'roles', 'notifications',
                                                          'business'
                                                         ]);
             return resp;

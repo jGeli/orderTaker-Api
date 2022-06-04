@@ -10,19 +10,16 @@ const payment = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "customers"
         }],
-        businesses: [{
+        business: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "businesses"
+            ref: "business"
         }], 
         description: String,
         amount: String,
         type: String,
         receivedBy: String,
         notes: String,
-        business: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "business"
-        },
+      
         isDeleted: {
             type: Boolean,
             default: false

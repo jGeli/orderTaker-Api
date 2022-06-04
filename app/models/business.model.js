@@ -26,10 +26,10 @@ const business = mongoose.model(
             ref: "purchases"
             }
             ],
-        users: {
+        users: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "users"
-        },
+        }],
          inventories: [
         {
           type: mongoose.Schema.Types.ObjectId,
@@ -43,30 +43,20 @@ const business = mongoose.model(
         },
          ],
   
-        // payments: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "payments"
-        // }
-        // ], 
-        // customers: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId, 
-        // ref: "customers"
-        // }
-        // ],  
-        owner: 
-            {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: "users"
-            }
-            ,   
-       users: [
+        payments: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "payments"
+        }
+        ], 
+        customers: [
         {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "users"
+        ref: "customers"
         }
-        ],   
+        ],  
+    
+    
     }
         )    
 );

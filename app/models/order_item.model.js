@@ -6,11 +6,11 @@ const order_item = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "inventories"
         },
-        qty: String,
         pricings: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'pricings'
         },
+        qty: String,
         subtotal: String,
         type: String,
         notes: String,

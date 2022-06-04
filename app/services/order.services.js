@@ -5,9 +5,9 @@ const Order = db.orders;
 class OrderServices {
 
     static async createRecord(prop) {
-        const { description, order_no, order_items, type, total_amount, customer_id, recordedBy, notes } = prop
+        const { description, order_no, order_items, type, total_amount, customers, recordedBy, notes} = prop
 
-        let resp = await Order.create({ description, order_no, order_items, type, total_amount, customer_id, recordedBy, notes });
+        let resp = await Order.create({ description, order_no, order_items, type, total_amount, customers, recordedBy, notes});
         return resp
     }
 
@@ -21,14 +21,14 @@ class OrderServices {
 
     static async getAll(prop = {}) {
         let resp = await Order.find({ ...prop, isDeleted: false })
-            .populate('order_items');
+            .populate(['order_items', 'customers']);
         ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Order.findById(id).populate('order_items');
+            let resp = await Order.findById(id).populate(['order_items', 'customers']);
             return resp;
         } catch (err) {
             return false

@@ -5,9 +5,9 @@ const Inventory = db.inventories;
 class InventoryServices {
 
     static async createRecord(prop) {
-        const { product_id, purchases, description, inStocks, price, notes } = prop
+        const { products, purchases, description, inStocks, pricings, notes } = prop
 
-        let resp = await Inventory.create({ product_id, purchases, description, inStocks, price, notes
+        let resp = await Inventory.create({ products, purchases, description, inStocks, pricings, notes
 });
         return resp
     }
@@ -21,15 +21,20 @@ class InventoryServices {
 
 
     static async getAll(prop = {}) {
-        let resp = await Iventory.find({ ...prop, isDeleted: false })
-            .populate('products', 'purchases', 'pricings' );
+        let resp = await Inventory.find({ ...prop, isDeleted: false })
+            .populate(['products', 'purchases', 'pricings']);
         ;
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Inventory.findById(id).populate('products', 'purchases', 'pricings');
+            let resp = await Inventory.findById(id)
+            .populate([
+                'products',
+                 'purchases',
+                  'pricings'
+                  ]);
             return resp;
         } catch (err) {
             return false
