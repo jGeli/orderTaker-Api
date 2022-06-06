@@ -1,4 +1,5 @@
-require('dotenv').config()
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "/.env" });
 const express = require("express");
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -26,10 +27,10 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:27012/'
+        url: 'http://localhost:27012/order_taker'
       },
       {
-        url: 'http://docampaign.online:27017'
+        url: 'http://docampaign.online:27017/order_taker'
       }
     ]
   },
@@ -37,12 +38,12 @@ const options = {
 }
 
 
-
+require('dotenv').config()
 
 const swaggerDocs = swaggerJsDoc(options)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
-const db = require("./app/models");
+const db = require("./app/models/index.js");
 const Role = db.roles;
 
 db.mongoose
