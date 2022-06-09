@@ -69,16 +69,10 @@ const isBD = (data) => {
   
   if (isEmpty(data.lastName)) errors.lastName = 'Last Name must not be empty';
 
-  if (isEmpty(data.birthDate)) errors.birthDate = 'Birth Date must not be empty';
-
-  if (isEmpty(data.gender)) errors.gender = 'gender must not be empty';
-
   if (isEmpty(data.contact)) errors.contact = 'contact must not be empty';
 
-  if (isEmpty(data.address)) errors.address = 'address must not be empty';
     if (isEmpty(data.email_address)) errors.email_address = 'Email address must not be empty';
     if (!isEmail(data.email_address)) errors.email_address = 'Email address must be a valid email';
-    if (isEmpty(data.username)) errors.username = 'Username must not be empty';
     if (isPasswordLength(data.password, 8)) errors.password = 'Password must be 8 characters';
     if (isEmpty(data.password)) errors.password = 'Password must not be empty';
   
@@ -94,7 +88,10 @@ const isBD = (data) => {
     let errors = {};
   
   
-    if (isEmpty(data.username)) errors.username = 'username must not be empty';
+    if (isEmpty(data.email_address) && isEmpty(data.username)) {
+      errors.username = 'Username must not be empty';
+      errors.email_address = 'Email must not be empty';
+    }
     if (isPasswordLength(data.password, 8)) errors.password = 'Password must be 8 characters';
     if (isEmpty(data.password)) errors.password = 'password must not be empty';
   

@@ -4,11 +4,24 @@ const db = require("../models");
 const User = db.user;
 const Role = db.role;
 verifyToken = (req, res, next) => {
+
   let token = req.headers["x-access-token"];
-  if (!token) {
+  console.log(token)
+  console.log(req.headers)
+  let idToken;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer ')
+  ) {
+    idToken = req.headers.authorization.split('Bearer ')[1];
+  } else {
+    return res.status(403).json({ text: 'Unauthorized', type: 'error' });
+  }
+
+  if (!idToken) {
     return res.status(403).send({ message: { text: "No token provided!", type: 'error' } });
   }
-  jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(idToken, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: { text: "Unauthorized!" , type: 'error' }});
     }
@@ -16,6 +29,7 @@ verifyToken = (req, res, next) => {
     next();
   });
 };
+
 isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {

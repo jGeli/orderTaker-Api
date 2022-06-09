@@ -12,34 +12,20 @@ const { validateLoginData, validateSignupData, validateBusinessData } = require(
 
 
 exports.signup = async (req, res) => {
-  let { isOwner } = req.body;
-  let { valid: valid1, errors: errors1 } = validateSignupData(req.body);
-  if(!valid1) return res.status(404).json({ message: { text: 'Something went wrong in user!', type: 'error' }, errors1 });
-
+  let { valid, errors } = validateSignupData(req.body);
+  if(!valid) return res.status(404).json({ message: { text: 'Something went wrong in user!', type: 'error' }, errors });
+  let { password, roles, firstName, lastName, email_address, contact, username } = req.body;
   
+  let user = new User({
 
-  let { business_name, business_address, business_contact, business_email_address, firstName, lastName, contact,  gender, roles, birthDate, address, username, email_address, password } = req.body;
-
-  let bus = isOwner && await BusinessService.createRecord({
-      name: business_name,
-      address: business_address,
-      contact: business_contact,
-      email_address: business_email_address
+    ...res.body,
+    email_address: email_address,
+    firstName: firstName,
+    lastName: lastName,
+    contact: contact,
+    username: username,
+    password: bcrypt.hashSync(password, 8)
   });
-
-  const user = new User({
-    firstName,
-    lastName,
-    birthDate,
-    contact,
-    address,
-    gender,
-    username,
-    email_address,
-    password: bcrypt.hashSync(password, 8),
-    business: isOwner ? bus._id : null 
-  });
-
 
 
   user.save( async (err, user) => {
@@ -48,7 +34,6 @@ exports.signup = async (req, res) => {
       return;
     }
 
-   await BusinessService.updateRecord(bus._id, {owner: user._id})
 
     if (roles) {
       Role.find(
@@ -97,10 +82,15 @@ exports.signin = (req, res) => {
 
 
   User.findOne({
-    username: req.body.username
+     $or: [{
+       username: req.body.username,
+     }, {
+       email_address: req.body.email_address
+     }] 
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
+      console.log(user)
       if (err) {
         res.status(500).send({ message: err });
         return;

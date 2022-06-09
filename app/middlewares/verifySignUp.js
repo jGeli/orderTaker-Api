@@ -3,32 +3,32 @@ const ROLES = db.ROLES;
 const User = db.users;
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
-  User.findOne({
-    username: req.body.username
-  }).exec((err, user) => {
-    if (err) {
-      res.status(500).send({message: { text: "Something went wrong!" , type: 'error' }});
-      return;
-    }
-    if (user) {
-      res.status(400).send({message: { text: "Failed! Username is already in use!" , type: 'error' }});
-      return;
-    }
-    // Email
     User.findOne({
-      email_address: req.body.email_address
+      username: req.body.username ? req.body.username : ''
     }).exec((err, user) => {
+      console.log(user)
       if (err) {
-        res.status(500).send({ message: { text: "Something went wrong!" , type: 'error' }});  
+        res.status(500).send({message: { text: "Something went wrong!" , type: 'error' }});
         return;
       }
       if (user) {
-        res.status(400).send({ message: { text: "Failed! Email is already in use!" , type: 'error' } });
+        res.status(400).send({message: { text: "Failed! Username is already in use!" , type: 'error' }});
         return;
-      }
-      next();
-    });
+      } 
+  User.findOne({
+    email_address: req.body.email_address
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: { text: "Something went wrong!" , type: 'error' }});  
+      return;
+    }
+    if (user) {
+      res.status(400).send({ message: { text: "Failed! Email is already in use!" , type: 'error' } });
+      return;
+    }
+    next();
   });
+});
 };
 
 checkRolesExisted = (req, res, next) => {
