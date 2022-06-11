@@ -4,10 +4,8 @@ const User = db.users;
 
 class UserServices {
     static async createRecord(prop) {
-        const { username, email_address, password } = prop
 
-        let resp = await User.create({ username, email_address, password
-});
+        let resp = await User.create(prop);
         return resp
     }
 

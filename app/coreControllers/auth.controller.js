@@ -121,7 +121,8 @@ exports.signin = (req, res) => {
       }
 
       let updateUser = await UserService.updateRecord(user._id, {status: "active"})
-      console.log(updateUser)
+  
+  
       res.status(200).send({
         id: user._id,
         username: user.username,

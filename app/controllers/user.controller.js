@@ -7,13 +7,17 @@ const { withFullNames } = require("../utils/formatter");
 
 
 exports.handleCreate = async (req, res) => {
-
+  const { business, userId } = req;
+      // const business = req.business;
+      // const userId = req.userId;
+      console.log(business)
+      console.log(userId)
   try {
 
 
     let { valid, errors } = validateUserData(req.body);
     if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
-    let { password, business_id, roles, firstName, lastName, email_address, contact, username } = req.body;
+    let { password, roles, firstName, lastName, email_address, contact, username } = req.body;
 
     let resp = await UserServices.createRecord({ 
       ...req.body,
@@ -23,15 +27,13 @@ exports.handleCreate = async (req, res) => {
      email_address: email_address,
      contact: contact,
      username: username,
+     business: business,
      password: bcrypt.hashSync(password, 8)
     })
 
 
     resp.roles = roles;
     resp.save();
-    let buss = await BusinessServices.getById(business_id);
-    buss.users.push(resp._id);
-    buss.save();
 
 
     return res.status(200).json({ message: "Created Successfully", data: resp });
