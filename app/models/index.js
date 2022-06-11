@@ -20,5 +20,5 @@ db.pricings = require("./pricing.model.js")
 
 
 
-db.ROLES = ["user", "admin", "moderator"];
+db.ROLES = ["admin", "cashier","user"];
 module.exports = db;

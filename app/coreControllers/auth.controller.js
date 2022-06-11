@@ -80,7 +80,6 @@ exports.signin = (req, res) => {
   let { valid, errors } = validateLoginData(req.body);
   if(!valid) return res.status(404).json({ message: { text: 'Something went wrong!', type: 'error' }, errors });
 
-
   User.findOne({
      $or: [{
        username: req.body.username,
@@ -130,7 +129,28 @@ exports.getAuthUser = async (req, res) => {
   let { userId } = req;
     console.log(userId)
     let user = await UserService.getById(userId);
+    console.log(user)
     res.status(200).json({message: 'Success', userId, user})
 }
 
+
+exports.handleSuspendUser = async (req, res) => {
+  try{
+    let { id }= req.params;
+    let user = await UserService.getById(id);
+    console.log(user)
+    if(!user){
+      res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
+    } else {
+      
+      await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
+    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'User is suspended!'}})
+    }
+    // console.log(user)
+  }catch(err){
+    res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
+
+  }
+
+}
 

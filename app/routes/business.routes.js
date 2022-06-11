@@ -1,5 +1,6 @@
 const { verifySignUp, authJwt } = require("../middlewares");
 const controller = require("../controllers/business.controller");
+
 module.exports = function (app) {
     app.use(function (req, res, next) {
         res.header(
@@ -9,15 +10,11 @@ module.exports = function (app) {
         next();
     });
 
-
-
-
-
-
-                            //Business - Create
+      //Business - Create
   
     app.post(
         "/api/business",
+        [authJwt.verifyToken, authJwt.isAdmin],
         controller.handleCreate
     );
 
@@ -25,21 +22,28 @@ module.exports = function (app) {
   
     app.patch(
         "/api/business/:id",
+        [authJwt.verifyToken, authJwt.isAdmin],
         controller.handleUpdateById
     );
 
                             //Business - Get All
    
-    app.get("/api/businesses", controller.handleGetAll);
+    app.get("/api/business", 
+    [authJwt.verifyToken, authJwt.isAdmin],
+    controller.handleGetAll);
 
                             //Business - Get by ID
 
-    app.get("/api/business/:id", controller.handleGetById);
+    app.get("/api/business/:id", 
+    [authJwt.verifyToken, authJwt.isAdmin],
+    controller.handleGetById);
 
 
                              //Business - Delete
  
-    app.delete("/api/business/:id", controller.handleDeleteById);
+    app.delete("/api/business/:id", 
+    [authJwt.verifyToken, authJwt.isAdmin],
+    controller.handleDeleteById);
 
 
 };

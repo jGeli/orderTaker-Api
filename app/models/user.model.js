@@ -2,34 +2,32 @@ const mongoose = require("mongoose");
 const User = mongoose.model(
   "users",
   new mongoose.Schema({
-    firstName: { type: 'String' },
-    lastName: { type: String },
+    firstName: String,
+    lastName:  String,
     birthDate: String,
     age: String,
     gender: String,
     contact: String,
     address: String,
-    email_address: { type: String }, 
-    username: { type: String },
-    password: { type: String },
-    dpUrl: { type: String },
-    notes: { type: String },
+    email_address:  String, 
+    username:  String,
+    password:  String,
+    dpUrl:  String,
+    notes:  String,
     isDeleted: { type: Boolean, default: false },
-    isVerified: { type: Boolean, default: false },
-    isBlock: { type: Boolean, default: false },
+    isSuspended: { type: Boolean, default: false },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "roles"
       }],
-    notifications: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "notifications"
-      }
-    ],
-    business:
-      {
+      notifications: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "notifications"
+        }
+      ],
+    business:    {
          type: mongoose.Schema.Types.ObjectId,
          ref: "business"
       }
@@ -37,6 +35,8 @@ const User = mongoose.model(
     { timestamps: true }
   )
 );
+
+
 module.exports = User;
 
 

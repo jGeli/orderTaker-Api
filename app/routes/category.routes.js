@@ -8,14 +8,13 @@ module.exports = function (app) {
         );
         next();
     });
-
- 
-
-
-                            //Category - Create
+    
+    
+    //Category - Create
 
     app.post(
         "/api/category",
+        [authJwt.verifyToken, authJwt.isAdmin],
         controller.handleCreate
     );
 
@@ -23,21 +22,26 @@ module.exports = function (app) {
   
     app.patch(
         "/api/category/:id",
+        [authJwt.verifyToken, authJwt.isAdmin],
         controller.handleUpdateById
     );
 
                             //Category - Get All
 
-    app.get("/api/categories", controller.handleGetAll);
+    app.get("/api/categories", 
+    controller.handleGetAll);
 
                             //Category - Get by ID
 
-    app.get("/api/category/:id", controller.handleGetById);
+    app.get("/api/category/:id",
+    controller.handleGetById);
 
 
                             //Category - Delete
 
-    app.delete("/api/category/:id", controller.handleDeleteById);
+    app.delete("/api/category/:id", 
+    [authJwt.verifyToken, authJwt.isAdmin],
+    controller.handleDeleteById);
 
 
 };

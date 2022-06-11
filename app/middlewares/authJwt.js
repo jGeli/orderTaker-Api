@@ -1,13 +1,12 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const db = require("../models");
-const User = db.user;
-const Role = db.role;
+const User = db.users;
+const Role = db.roles;
+
+
 verifyToken = (req, res, next) => {
 
-  let token = req.headers["x-access-token"];
-  console.log(token)
-  console.log(req.headers)
   let idToken;
   if (
     req.headers.authorization &&
@@ -21,14 +20,21 @@ verifyToken = (req, res, next) => {
   if (!idToken) {
     return res.status(403).send({ message: { text: "No token provided!", type: 'error' } });
   }
-  jwt.verify(idToken, config.secret, (err, decoded) => {
+
+    jwt.verify(idToken, config.secret, async (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: { text: "Unauthorized!" , type: 'error' }});
     }
+
+    let user = await User.findById(decoded.id);
+    if(!user) return res.status(401).send({ message: { text: "User not found!" , type: 'error' }});
     req.userId = decoded.id;
+    req.business = user.business
     next();
-  });
+    });
+
 };
+
 
 isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
@@ -36,6 +42,7 @@ isAdmin = (req, res, next) => {
       res.status(500).send({message: { text: "Something went wrong!" , type: 'error' }});
       return;
     }
+
     Role.find(
       {
         _id: { $in: user.roles }
@@ -57,6 +64,8 @@ isAdmin = (req, res, next) => {
     );
   });
 };
+
+
 isModerator = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
@@ -84,6 +93,8 @@ isModerator = (req, res, next) => {
     );
   });
 };
+
+
 const authJwt = {
   verifyToken,
   isAdmin,

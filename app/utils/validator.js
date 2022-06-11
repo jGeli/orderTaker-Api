@@ -113,8 +113,6 @@ const validateUserData = (data) => {
 
   if (isEmpty(data.email_address)) errors.email_address = 'email must not be empty';
 
-  if (isEmpty(data.username)) errors.username = 'username must not be empty';
-
   if (isEmpty(data.password)) errors.password = 'password must not be empty';
 
   if (isEmpty(data.firstName)) errors.firstName = 'FirstName must not be empty';
@@ -129,9 +127,8 @@ const validateUserData = (data) => {
 
   if (isEmpty(data.address)) errors.address = 'address must not be empty';
 
-  if (isEmpty(data.roles)) errors.roles = 'roles must not be empty';
 
-  if (isEmpty(data.businesses)) errors.businesses = 'businesses must not be empty';
+  if (isEmpty(data.business_id)) errors.business_id = 'business must not be empty';
 
   
 
@@ -189,27 +186,11 @@ const validatePurchaseData = (data) => {
 const validateBusinessData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.business_name)) errors.business_name = 'Business name must not be empty';
+  if (isEmpty(data.name)) errors.name = 'Business name must not be empty';
 
-  if (isEmpty(data.business_address)) errors.business_address = 'Business address must not be empty';
+  if (isEmpty(data.address)) errors.address = 'Business address must not be empty';
 
-  if (isEmpty(data.business_contact)) errors.business_contact = 'Business contact must not be empty';
-
-  if (isEmpty(data.business_email_address)) errors.business_email_address = 'Business email_address must not be empty';
-
-  // if (isEmpty(data.type)) errors.type = 'type must not be empty';
-
-  if (isEmpty(data.inventory)) errors.inventory = 'inventory must not be empty';
-
-  if (isEmpty(data.orders)) errors.orders = 'orders must not be empty';
-
-  if (isEmpty(data.purchases)) errors.purchases = 'purchases must not be empty';
-
-  if (isEmpty(data.payments)) errors.payments = 'payments must not be empty';
-
-  if (isEmpty(data.users)) errors.users = 'users must not be empty';
-
-
+  if (isEmpty(data.contact)) errors.contact = 'Business contact must not be empty';
 
   return {
     errors,

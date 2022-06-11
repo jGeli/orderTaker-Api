@@ -5,28 +5,24 @@ const Business = db.businesses;
 class BusinessServices {
 
     static async createRecord(prop) {
-        const { name, address, contact, email_address, type, notes, purchases } = prop
-
-        let resp = await Business.create({ name, address, contact, email_address, type, notes, purchases });
+        const { name, address, contact, email_address, type, notes, owner } = prop
+        let resp = await Business.create({ name, address, contact, email_address, type, notes, owner });
         return resp
     }
-
 
     static async updateRecord(id, data = {}) {
         let resp = await Business.findByIdAndUpdate(id, { ...data });
         return resp;
     }
 
-
-
     static async getAll(prop = {}) {
-        let resp = await Business.find({ ...prop, isDeleted: false }).populate(['owner']);
+        let resp = await Business.find({ ...prop, isDeleted: false }).populate('owner');
         return resp
     }
 
     static async getById(id) {
         try {
-            let resp = await Business.findById(id).populate(['purchases', 'users', 'inventories', 'orders', 'payments', 'customers']);
+            let resp = await Business.findById(id).populate('owner');
             return resp;
         } catch (err) {
             return false

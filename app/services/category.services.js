@@ -5,10 +5,9 @@ const Category = db.categories;
 class CategoryServices {
 
     static async createRecord(prop) {
-        const { name, description, notes
-} = prop
+        const { name, description, notes, business } = prop
 
-        let resp = await Category.create({ name, description, notes });
+        let resp = await Category.create({ name, description, notes, business });
         return resp
     }
 

@@ -3,6 +3,7 @@ const business = mongoose.model(
     "business",
     new mongoose.Schema({
         name: String,
+        about: String,
         address: String,
         contact: String,
         email_address: String,
@@ -20,53 +21,11 @@ const business = mongoose.model(
             type: Boolean,
             default: false
         },
-        purchases: [
-            {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "purchases"
-            }
-            ],
-        users: {
+        owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users"
         },
-         inventories: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "inventories"
-        }
-         ],
-        orders: [
-        {
-         type: mongoose.Schema.Types.ObjectId,
-         ref: "orders"
-        },
-         ],
-  
-        // payments: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "payments"
-        // }
-        // ], 
-        // customers: [
-        // {
-        // type: mongoose.Schema.Types.ObjectId, 
-        // ref: "customers"
-        // }
-        // ],  
-        owner: 
-            {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: "users"
-            }
-            ,   
-       users: [
-        {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "users"
-        }
-        ],   
+        logo: String
     }
         )    
 );
