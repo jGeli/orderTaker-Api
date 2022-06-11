@@ -17,7 +17,7 @@ exports.handleCreate = async (req, res) => {
 
     let { valid, errors } = validateUserData(req.body);
     if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
-    let { password, roles, firstName, lastName, email_address, contact, username } = req.body;
+    let { password, roles, firstName, lastName, email_address, contact, username, dpUrl } = req.body;
 
     let resp = await UserServices.createRecord({ 
       ...req.body,
@@ -28,7 +28,8 @@ exports.handleCreate = async (req, res) => {
      contact: contact,
      username: username,
      business: business,
-     password: bcrypt.hashSync(password, 8)
+     password: bcrypt.hashSync(password, 8),
+     dpUrl: dpUrl
     })
 
 
