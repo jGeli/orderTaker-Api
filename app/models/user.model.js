@@ -21,7 +21,7 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "roles"
       }],
-      notifications: [
+    notifications: [
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "notifications"
