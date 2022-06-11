@@ -14,6 +14,7 @@ const User = mongoose.model(
     password:  String,
     dpUrl:  String,
     notes:  String,
+    status: {type: String, default: 'inactive'},
     isDeleted: { type: Boolean, default: false },
     isSuspended: { type: Boolean, default: false },
     roles: [
@@ -21,7 +22,7 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "roles"
       }],
-      notifications: [
+    notifications: [
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "notifications"

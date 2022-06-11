@@ -19,6 +19,7 @@ module.exports = function(app) {
   );
   app.post("/api/auth/signin", controller.signin);
   app.get("/api/auth", [authJwt.verifyToken], controller.getAuthUser);
+  app.get("/api/auth/logout/:id", [authJwt.verifyToken], controller.logout);
 
   app.get("/api/auth/suspend/:id", [authJwt.verifyToken], controller.handleSuspendUser);
 
