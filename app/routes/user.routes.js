@@ -17,7 +17,9 @@ module.exports = function (app) {
 
                          // USER GET ALL
 
-  app.get("/api/users", controller.handleGetAll);
+  app.get("/api/users",
+  [authJwt.verifyToken],
+  controller.handleGetAll);
 
 
 

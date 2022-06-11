@@ -61,32 +61,20 @@ db.mongoose
 
 
 function initial() {
+
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
-      new Role({
-        title: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-        console.log("added 'user' to roles collection");
-      });
-      new Role({
-        title: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-        console.log("added 'moderator' to roles collection");
-      });
-      new Role({
-        title: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-        console.log("added 'admin' to roles collection");
-      });
+    
+      db.ROLES.forEach(a => {
+        new Role({
+          title: a
+        }).save(err => {
+          if (err) {
+            console.log("error", err);
+          }
+          console.log(`added ${a} to roles collection`);
+        });
+      })
     }
   });
 }

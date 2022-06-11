@@ -55,8 +55,10 @@ exports.handleGetById = async (req, res) => {
 };
 
 exports.handleGetAll = async (req, res) => {
-  let resp = await UserServices.getAll();
-  console.log(resp)
+  let { business } = req;
+  console.log(business)
+  let resp = await UserServices.getAll({ business: business});
+  console.log(resp.length)
   res.status(200).json({ message: "Fetch Successfully", data: resp });
 };
 
