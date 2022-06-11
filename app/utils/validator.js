@@ -64,6 +64,7 @@ const isBD = (data) => {
   
     
 
+  if (isEmpty(data.username)) errors.username = 'email must not be empty';
 
   if (isEmpty(data.firstName)) errors.firstName = 'First Name must not be empty';
   

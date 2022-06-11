@@ -14,7 +14,7 @@ const { validateLoginData, validateSignupData, validateBusinessData } = require(
 exports.signup = async (req, res) => {
   let { valid, errors } = validateSignupData(req.body);
   if(!valid) return res.status(404).json({ message: { text: 'Something went wrong in user!', type: 'error' }, errors });
-  let { password, roles, firstName, lastName, email_address, contact, username } = req.body;
+  let { password, userType, firstName, lastName, email_address, contact, username } = req.body;
   
   let user = new User({
 
@@ -27,7 +27,7 @@ exports.signup = async (req, res) => {
     password: bcrypt.hashSync(password, 8)
   });
 
-
+  console.log(userType)
   user.save( async (err, user) => {
     if (err) {
       res.status(500).send({  message: { text: 'Something went wrong!', type: 'error' }});
@@ -35,12 +35,14 @@ exports.signup = async (req, res) => {
     }
 
 
-    if (roles) {
+    if (userType) {
       Role.find(
         {
-          title: { $in: roles }
+          title: { $in: userType }
         },
         (err, roles) => {
+          console.log('W/ roles')
+          console.log(roles)
           if (err) {
             res.status(500).send({ message: { text: 'Something went wrong!', type: 'error' } });
             return;
@@ -82,14 +84,14 @@ exports.signin = (req, res) => {
 
   User.findOne({
      $or: [{
-       username: req.body.username,
+       username: req.body.username ? req.body.username : req.body.email_address ? req.body.email_address :'n',
      }, {
-       email_address: req.body.email_address
+       email_address: req.body.email_address ? req.body.email_address : req.body.username ? req.body.username : 'n'
      }] 
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
-      console.log(user)
+      // console.log(user)
       if (err) {
         res.status(500).send({ message: err });
         return;
@@ -107,18 +109,23 @@ exports.signin = (req, res) => {
           message: { text: "Invalid Password!", type: 'error'}
         });
       }
-      var token = jwt.sign({ id: user.id }, config.secret, {
+
+      console.log(user.business)
+
+      var token = jwt.sign({ id: user.id, business: user.business }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
       var authorities = [];
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].title.toUpperCase());
       }
+
       res.status(200).send({
         id: user._id,
         username: user.username,
         email_address: user.email_address,
         roles: authorities,
+        business: user.business,
         accessToken: token
       });
     });
@@ -127,9 +134,7 @@ exports.signin = (req, res) => {
 
 exports.getAuthUser = async (req, res) => {
   let { userId } = req;
-    console.log(userId)
     let user = await UserService.getById(userId);
-    console.log(user)
     res.status(200).json({message: 'Success', userId, user})
 }
 
