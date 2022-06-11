@@ -12,7 +12,7 @@ class UserServices {
     }
 
     static async updateRecord(id, data = {}){
-        let resp = await User.findByIdAndUpdate(id, { ...data });
+        let resp = await User.findByIdAndUpdate(id, { ...data }, {new: true});
         return resp;
     }
 

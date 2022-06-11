@@ -90,7 +90,7 @@ exports.signin = (req, res) => {
      }] 
   })
     .populate("roles", "-__v")
-    .exec((err, user) => {
+    .exec( async (err, user) => {
       // console.log(user)
       if (err) {
         res.status(500).send({ message: err });
@@ -110,7 +110,7 @@ exports.signin = (req, res) => {
         });
       }
 
-      console.log(user.business)
+      
 
       var token = jwt.sign({ id: user.id, business: user.business }, config.secret, {
         expiresIn: 86400 // 24 hours
@@ -120,13 +120,16 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].title.toUpperCase());
       }
 
+      let updateUser = await UserService.updateRecord(user._id, {status: "active"})
+      console.log(updateUser)
       res.status(200).send({
         id: user._id,
         username: user.username,
         email_address: user.email_address,
         roles: authorities,
         business: user.business,
-        accessToken: token
+        accessToken: token,
+        status: updateUser.status
       });
     });
 };
@@ -156,6 +159,27 @@ exports.handleSuspendUser = async (req, res) => {
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
   }
-
 }
+
+
+  exports.logout = async (req, res) => {
+    try{
+    let { id } = req.params;
+    let user = await UserService.getById(id);
+    console.log(user)
+    if(!user){
+      res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
+    } else {
+      
+      await UserService.updateRecord(id, { status: 'inactive' });
+    res.status(200).json({message: { text: user.inactive ? 'User unsuspended!' : 'User is suspended!'}})
+    }
+    // console.log(user)
+  }catch(err){
+    res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
+
+  }
+}
+
+
 

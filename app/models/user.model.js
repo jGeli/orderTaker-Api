@@ -14,6 +14,7 @@ const User = mongoose.model(
     password:  String,
     dpUrl:  String,
     notes:  String,
+    status: {type: String, default: 'inactive'},
     isDeleted: { type: Boolean, default: false },
     isSuspended: { type: Boolean, default: false },
     roles: [
