@@ -15,6 +15,7 @@ db.categories = require ("./category.model.js")
 db.order_items = require ("./order_item.model.js")
 db.orders = require ("./order.model.js")
 db.pricings = require("./pricing.model.js")
+db.filedoc = require("./file.model.js");
 
 
 

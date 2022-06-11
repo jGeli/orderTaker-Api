@@ -8,11 +8,19 @@ var corsOptions = {
   origin: "*"
 };
 
+
+
+app.use('/api/static', express.static(process.env.RESOURCE_PATH));
+
+
 app.use(cors(corsOptions));
+
 // parse requests of content-type - application/json
-app.use(express.json());
+app.use(express.json({limit: '100mb'}));
+
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false, limit: '100mb' }));
+
 
 
 
@@ -89,7 +97,7 @@ app.get("/api", (req, res) => {
 //Core Routes
 require('./app/coreRoutes/auth.routes')(app);
 require('./app/coreRoutes/data.routes')(app);
-
+require('./app/coreRoutes/file.routes')(app);
 
 
 

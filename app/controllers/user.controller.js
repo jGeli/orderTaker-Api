@@ -3,6 +3,7 @@ const UserServices = require('../services/user.services');
 const BusinessServices = require('../services/business.services');
 
 const { validateUserData } = require('../utils/validator');
+const { withFullNames } = require("../utils/formatter");
 
 
 exports.handleCreate = async (req, res) => {
@@ -58,8 +59,9 @@ exports.handleGetAll = async (req, res) => {
   let { business } = req;
   console.log(business)
   let resp = await UserServices.getAll({ business: business});
+  let userFull = withFullNames(resp);
   console.log(resp.length)
-  res.status(200).json({ message: "Fetch Successfully", data: resp });
+  res.status(200).json({ message: "Fetch Successfully", data: userFull });
 };
 
 exports.handleDeleteById = async (req, res) => {
