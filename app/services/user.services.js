@@ -11,7 +11,7 @@ class UserServices {
 
     static async updateRecord(id, data = {}){
         let resp = await User.findByIdAndUpdate(id, { ...data }, {new: true}).select({createdAt: 0, updatedAt: 0});
-        return resp;
+        return resp
     }
 
 
