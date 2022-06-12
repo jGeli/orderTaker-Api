@@ -13,11 +13,12 @@ const User = mongoose.model(
     username:  String,
     password:  String,
     dpUrl:  String,
-    notes:  String,
+    notes:  String, 
+    suspended_by: String,
     status: {type: String, default: 'inactive'},
     isDeleted: { type: Boolean, default: false },
-    suspended_at: { type: Date, default: Date.now() },
-
+    isSuspended: false,
+    suspended_by: String, 
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

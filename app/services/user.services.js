@@ -10,10 +10,8 @@ class UserServices {
     }
 
     static async updateRecord(id, data = {}){
-        delete data._id;
-        console.log(data.roles)
-        let resp = await User.findByIdAndUpdate(id, { ...data, roles: data.roles }, {new: true}).select({createdAt: 0, updatedAt: 0});
-        return resp;
+        let resp = await User.findByIdAndUpdate(id, { ...data }, {new: true}).select({createdAt: 0, updatedAt: 0});
+        return resp
     }
 
 

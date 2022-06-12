@@ -21,7 +21,7 @@ module.exports = function(app) {
   app.get("/api/auth", [authJwt.verifyToken], controller.getAuthUser);
   app.get("/api/auth/logout", [authJwt.verifyToken], controller.logout);
 
-  app.get("/api/auth/suspend/:id", [authJwt.verifyToken], controller.handleSuspendUser);
+  app.get("/api/auth/suspend/:id", [authJwt.verifyToken, isAdmin], controller.handleSuspendUser);
 
 
 };

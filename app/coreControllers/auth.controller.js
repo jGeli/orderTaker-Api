@@ -122,8 +122,7 @@ exports.signin = (req, res) => {
       }
 
       let updateUser = await UserService.updateRecord(user._id, {status: "active"})
-  
-  
+      console.log(updateUser)
       res.status(200).send({
         id: user._id,
         username: user.username,
@@ -131,7 +130,7 @@ exports.signin = (req, res) => {
         roles: authorities,
         business: user.business,
         accessToken: token,
-        status: updateUser.status
+        status: user.status
       });
     });
 };
@@ -160,16 +159,16 @@ exports.handleSuspendUser = async (req, res) => {
     if(!user){
       res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     } else {
-     
-      await UserService.updateRecord(id, suspended_at);
-    res.status(200).json({message: { text: user.suspended_at ? 'User unsuspended!' : 'User has been suspended'  }})
+      
+      await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
+    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date()}})
     }
     // console.log(user)
   }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
-  };
-};
+  }
+}
 
 
   exports.logout = async (req, res) => {
@@ -186,7 +185,8 @@ exports.handleSuspendUser = async (req, res) => {
   }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
-  };
-};
+  }
+}
+
 
 
