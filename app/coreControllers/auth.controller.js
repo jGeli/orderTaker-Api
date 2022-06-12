@@ -153,7 +153,7 @@ exports.handleSuspendUser = async (req, res) => {
     } else {
       
       await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
-    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date() + user.param.suspended_by }})
+    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date()}})
     }
     // console.log(user)
   }catch(err){
