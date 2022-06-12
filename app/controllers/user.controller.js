@@ -10,12 +10,10 @@ exports.handleCreate = async (req, res) => {
   const { business, userId } = req;
       // const business = req.business;
       // const userId = req.userId;
-      console.log(business)
-      console.log(userId)
   try {
 
 
-    let { valid, errors } = validateUserData(req.body);
+    let { valid, errors } = validateUserData({ ...req.body, business_id: business});
     if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
     let { password, roles, firstName, lastName, email_address, contact, username, dpUrl } = req.body;
 
@@ -60,10 +58,8 @@ exports.handleGetById = async (req, res) => {
 
 exports.handleGetAll = async (req, res) => {
   let { business } = req;
-  console.log(business)
   let resp = await UserServices.getAll({ business: business});
   let userFull = withFullNames(resp);
-  console.log(resp.length)
   res.status(200).json({ message: "Fetch Successfully", data: userFull });
 };
 

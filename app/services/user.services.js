@@ -17,7 +17,7 @@ class UserServices {
 
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false }).select({createdAt: 0, updatedAt: 0,  password: 0, isSuspended: 0, isDeleted: 0}).populate(['roles', 'business']);
+          let resp =  await User.find({ ...prop, isDeleted: false }).select({createdAt: 0, updatedAt: 0,  password: 0, isSuspended: 0, isDeleted: 0}).populate(['roles']);
           return resp
     }
 
