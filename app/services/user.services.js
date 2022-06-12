@@ -23,7 +23,7 @@ class UserServices {
 
     static async getById(id){
         try{
-            let resp = await User.findById(id).select({createdAt: 0, updatedAt: 0,  password: 0, isSuspended: 0, isDeleted: 0, __v: 0}).populate(['roles', 'notifications', 
+            let resp = await User.findById(id).populate(['roles', 'notifications', 
             {
                 path: 'business',
                 model: 'business',
