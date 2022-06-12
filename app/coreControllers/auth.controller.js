@@ -9,6 +9,7 @@ const UserService = require('../services/user.services');
 const BusinessService = require('../services/business.services');
 
 const { validateLoginData, validateSignupData, validateBusinessData } = require('../utils/validator');
+const { now } = require("mongoose");
 
 
 exports.signup = async (req, res) => {
@@ -151,16 +152,16 @@ exports.handleSuspendUser = async (req, res) => {
     if(!user){
       res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     } else {
-      
-      await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
-    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'User is suspended!'}})
+     
+      await UserService.updateRecord(id, suspended_at);
+    res.status(200).json({message: { text: user.suspended_at ? 'User unsuspended!' : 'User has been suspended'  }})
     }
     // console.log(user)
   }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
-  }
-}
+  };
+};
 
 
   exports.logout = async (req, res) => {
@@ -171,16 +172,18 @@ exports.handleSuspendUser = async (req, res) => {
     if(!user){
       res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     } else {
-      
-      await UserService.updateRecord(id, { status: 'inactive' });
-    res.status(200).json({message: { text: user.inactive ? 'User unsuspended!' : 'User is suspended!'}})
+
+
+     let updateUser = await UserService.updateRecord(user._id, {status: "inactive"})
+
+      await UserService.updateUser(id, { status: 'inactive' });
+    res.status(200).json({message: { text: user.inactive ? 'logged in!' : 'your account has been logged out'}})
     }
     // console.log(user)
   }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
-  }
-}
-
+  };
+};
 
 
