@@ -10,7 +10,7 @@ var corsOptions = {
 
 
 
-// app.use('/api/static', express.static(process.env.RESOURCE_PATH));
+app.use('/api/static', express.static(process.env.RESOURCE_PATH));
 
 
 app.use(cors(corsOptions));

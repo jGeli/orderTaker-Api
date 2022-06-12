@@ -7,6 +7,9 @@ var bcrypt = require("bcryptjs");
 
 const UserService = require('../services/user.services');
 const BusinessService = require('../services/business.services');
+const CustomerService = require('../services/customer.services');
+const ProductService = require('../services/product.services');
+
 
 const { validateLoginData, validateSignupData, validateBusinessData } = require('../utils/validator');
 const { now } = require("mongoose");
@@ -15,7 +18,7 @@ const { now } = require("mongoose");
 exports.signup = async (req, res) => {
   let { valid, errors } = validateSignupData(req.body);
   if(!valid) return res.status(404).json({ message: { text: 'Something went wrong in user!', type: 'error' }, errors });
-  let { password, userType, firstName, lastName, email_address, contact, username } = req.body;
+  let { password, roles, firstName, lastName, email_address, contact, username } = req.body;
   
   let user = new User({
 
@@ -28,7 +31,6 @@ exports.signup = async (req, res) => {
     password: bcrypt.hashSync(password, 8)
   });
 
-  console.log(userType)
   user.save( async (err, user) => {
     if (err) {
       res.status(500).send({  message: { text: 'Something went wrong!', type: 'error' }});
@@ -36,14 +38,12 @@ exports.signup = async (req, res) => {
     }
 
 
-    if (userType) {
+    if (roles) {
       Role.find(
         {
-          title: { $in: userType }
+          title: { $in: roles }
         },
         (err, roles) => {
-          console.log('W/ roles')
-          console.log(roles)
           if (err) {
             res.status(500).send({ message: { text: 'Something went wrong!', type: 'error' } });
             return;
@@ -138,9 +138,17 @@ exports.signin = (req, res) => {
 
 
 exports.getAuthUser = async (req, res) => {
-  let { userId } = req;
+  let { userId, business } = req;
     let user = await UserService.getById(userId);
-    res.status(200).json({message: 'Success', userId, user})
+    let details  = await BusinessService.getById(business);
+    
+    let businessObject = {
+          ...details._doc,
+          users: await UserService.getAll({business: business}),
+          products: await ProductService.getAll({business: business}),
+          customers: await CustomerService.getAll({business: business})
+    }
+    res.status(200).json({message: 'Success' , business: businessObject, user})
 }
 
 
@@ -165,19 +173,14 @@ exports.handleSuspendUser = async (req, res) => {
 
 
   exports.logout = async (req, res) => {
+      const { userId } = req;
     try{
-    let { id } = req.params;
-    let user = await UserService.getById(id);
-    console.log(user)
+    let user = await UserService.getById(userId);
     if(!user){
       res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     } else {
-
-
-     let updateUser = await UserService.updateRecord(user._id, {status: "inactive"})
-
-      await UserService.updateUser(id, { status: 'inactive' });
-    res.status(200).json({message: { text: user.inactive ? 'logged in!' : 'your account has been logged out'}})
+    await UserService.updateRecord(userId, {status: "inactive"})
+    res.status(200).json({message: { text: 'your account has been logged out'}})
     }
     // console.log(user)
   }catch(err){

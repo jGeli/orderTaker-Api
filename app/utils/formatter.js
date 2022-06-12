@@ -4,13 +4,9 @@ const fullNamer = (firstName, lastName) => {
 
 const roleString = (data) => {
     let str = ''
-
     for(let i = 0; i < data.length; i++){
       str = i == 0 ? str + String(data[i].title).toUpperCase() :  str + `/${String(data[i].title).toUpperCase()}`;
     }
-
- 
-    console.log(str)
     return str
 };
 

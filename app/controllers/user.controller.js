@@ -15,11 +15,12 @@ exports.handleCreate = async (req, res) => {
 
     let { valid, errors } = validateUserData({ ...req.body, business_id: business});
     if (!valid) return res.status(400).json({ message: 'Something went wrong!', errors })
-    let { password, roles, firstName, lastName, email_address, contact, username, dpUrl } = req.body;
+    let { password, roles, firstName, lastName, email_address, contact, username, dpUrl, gender, address, birthDate} = req.body;
+
 
     let resp = await UserServices.createRecord({ 
       ...req.body,
-     roles: roles,
+    //  roles: roles,
      firstName: firstName,
      lastName: lastName,
      email_address: email_address,
@@ -27,11 +28,16 @@ exports.handleCreate = async (req, res) => {
      username: username,
      business: business,
      password: bcrypt.hashSync(password, 8),
-     dpUrl: dpUrl
+     dpUrl: dpUrl,
+     address: address,
+     gender: gender,
+     birthDate: birthDate
     })
 
+    // console.log(roles)
+        resp.roles = roles;
 
-    resp.roles = roles;
+    // resp.roles.push(roles[0]);
     resp.save();
 
 

@@ -10,14 +10,16 @@ class UserServices {
     }
 
     static async updateRecord(id, data = {}){
-        let resp = await User.findByIdAndUpdate(id, { ...data }, {new: true}).select({createdAt: 0, updatedAt: 0});
+        delete data._id;
+        console.log(data.roles)
+        let resp = await User.findByIdAndUpdate(id, { ...data, roles: data.roles }, {new: true}).select({createdAt: 0, updatedAt: 0});
         return resp;
     }
 
 
         
    static async getAll(prop = {}){
-          let resp =  await User.find({ ...prop, isDeleted: false }).select({createdAt: 0, updatedAt: 0,  password: 0, isSuspended: 0, isDeleted: 0}).populate(['roles']);
+          let resp =  await User.find({ ...prop, isDeleted: false }).select({createdAt: 0, updatedAt: 0,  password: 0, isSuspended: 0, isDeleted: 0}).populate(['roles', 'business']);
           return resp
     }
 
