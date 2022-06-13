@@ -130,7 +130,8 @@ exports.signin = (req, res) => {
         roles: authorities,
         business: user.business,
         accessToken: token,
-        status: user.status
+        status: user.status,
+        
       });
     });
 };
@@ -153,18 +154,21 @@ exports.getAuthUser = async (req, res) => {
 
 exports.handleSuspendUser = async (req, res) => {
   try{
+    
     let { id }= req.params;
     let user = await UserService.getById(id);
+   
     console.log(user)
     if(!user){
       res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     } else {
-      
+    
       await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
-    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date()}})
-    }
+    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date() }});
+    } 
+    // res.send.stringify({suspended_by: req.user.suspended_by('')})
     // console.log(user)
-  }catch(err){
+    }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 
   }
