@@ -13,6 +13,7 @@ const ProductService = require('../services/product.services');
 
 const { validateLoginData, validateSignupData, validateBusinessData } = require('../utils/validator');
 const { now } = require("mongoose");
+const { fullNamer } = require("../utils/formatter");
 
 
 exports.signup = async (req, res) => {
@@ -121,8 +122,6 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].title.toUpperCase());
       }
 
-      let updateUser = await UserService.updateRecord(user._id, {status: "active"})
-      console.log(updateUser)
       res.status(200).send({
         id: user._id,
         username: user.username,
@@ -152,18 +151,32 @@ exports.getAuthUser = async (req, res) => {
 
 
 exports.handleSuspendUser = async (req, res) => {
+  let { userId } = req;
   try{
     let { id }= req.params;
+    let susp = await UserService.getById(userId);
+
     let user = await UserService.getById(id);
-    console.log(user)
     if(!user){
-      res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
-    } else {
-      
-      await UserService.updateRecord(id, { isSuspended: !user.isSuspended  });
-    res.status(200).json({message: { text: user.isSuspended ? 'User unsuspended!' : 'suspended_at: ' + Date()}})
+     return res.status(404).json({message: { text: 'User Not Found!', type: 'error' }})
     }
-    // console.log(user)
+
+    if(user.suspended_at){
+       await UserService.updateRecord(id, { 
+              suspended_at: null,
+              suspended_by: null,
+              status: 'inactive'
+            });
+    return res.status(200).json({message: { text: 'User Unsuspended!'}})
+
+    } else {
+      await UserService.updateRecord(id, { 
+        suspended_at: new Date(),
+        suspended_by: fullNamer(susp.firstName, susp.lastName),
+        status: 'suspended'
+      });
+      return res.status(200).json({message: { text: 'User Suspended!'}})
+    }
   }catch(err){
     res.status(400).json({message: { text: 'Something went wrong!', type: 'error' }, error: err})
 

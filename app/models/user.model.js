@@ -15,10 +15,9 @@ const User = mongoose.model(
     dpUrl:  String,
     notes:  String, 
     suspended_by: String,
+    suspended_at: String,
     status: {type: String, default: 'inactive'},
     isDeleted: { type: Boolean, default: false },
-    isSuspended: false,
-    suspended_by: String, 
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

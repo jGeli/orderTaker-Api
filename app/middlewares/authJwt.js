@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const db = require("../models");
+const UserServices = require("../services/user.services");
 const User = db.users;
 const Role = db.roles;
 
@@ -28,11 +29,17 @@ verifyToken = (req, res, next) => {
 
     let user = await User.findById(decoded.id);
     if(!user) return res.status(401).send({ message: { text: "User not found!" , type: 'error' }});
-    req.userId = decoded.id;
-    req.business = user.business
-    next();
-    });
+    if(user.suspended_by) {
 
+    return res.status(401).send({ message: { text: "Account has been suspended!" , type: 'error' }});
+    }
+    if(!user.suspended_by && user.status === 'inactive'){
+      await UserServices.updateRecord(decoded.id, { status: 'active' })
+    }
+      req.userId = decoded.id;
+      req.business = user.business
+      next();
+    });
 };
 
 
