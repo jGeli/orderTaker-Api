@@ -2,7 +2,7 @@ const { uniq, isUndefined } = require("lodash");
 const CoreModel = require("../../core/model");
 const TEXT_HELPER = require('../helpers/text');
 const moment = require('moment');
-let phoneschema = require('../schemas/phone-schema.json');
+let phoneSchema = require('../schemas/phones-schema.json');
 
 
 
@@ -200,7 +200,7 @@ class PhoneModel extends CoreModel {
         let columns = params.body;
         console.log('params.currentPhone', params.currentPhone)
         for (let colname in columns) {
-            if ( !phoneschema.updateColums.includes(colname) )
+            if ( !phoneSchema.updateColums.includes(colname) )
             continue;
             setSql.SET += setSql.SET ?  ' ,' + colname + ' = ?': colname + ' = ?'
             setSql.replacements.push(columns[colname]);
@@ -241,7 +241,7 @@ class PhoneModel extends CoreModel {
         let columns = params.body;
 
         for (let colname in columns) {
-            if ( !phoneschema.createColums.includes(colname) )
+            if ( !phoneSchema.createColums.includes(colname) )
             continue;
 
 
