@@ -83,7 +83,7 @@ class UserModel extends CoreModel {
     }
 
     static async getOne(params) {
-        console.log('from getOne: ' + this.getModelName() )
+        console.log('from getOne:' + this.getModelName() )
         let results = null;
 
         let select = params.fields || '*';

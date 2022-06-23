@@ -32,6 +32,7 @@ exports.up = function(db, callback) {
       label: 'string',
       notes: 'string',
       deleted_at: { type: 'datetime'},
+      created_at: { type: 'timestamp'}
     }),
   ], callback)
 };

@@ -16,19 +16,19 @@ const QUERY_HELPER = require('../helpers/query-helper');
 
 
 // Model declarations
-const PHONE_MODEL = require("../models/phones.model");
+const TAG_MODEL = require("../models/tags.model");
 
 // Validator declarations
-const PHONE_VALIDATOR = require("../validators/phone-validator");
+const TAG_VALIDATOR = require("../validators/tag-validator");
 
 // CREATE RECORD
-app.post('/admin/phones', async (req, res, next) => {
+app.post('/admin/tags', async (req, res, next) => {
     let params = {}
     params.body = req.body;
 
     // Validataion
     try {
-        let validator = await PHONE_VALIDATOR.validate(req.body);
+        let validator = await TAG_VALIDATOR.validate(req.body);
         if ( !validator.valid ) {
             API_RESPONSE.send(res, {
                 'status': 422,
@@ -55,10 +55,10 @@ app.post('/admin/phones', async (req, res, next) => {
         
 
         // Preparations
-        params.insertSql = await PHONE_MODEL.prepareSave(params);
+        params.insertSql = await TAG_MODEL.prepareSave(params);
 
         // Perform Query
-        let results = await PHONE_MODEL.save(params);
+        let results = await TAG_MODEL.save(params);
         
         API_RESPONSE.send(res, {
             'status': 201,
@@ -79,7 +79,7 @@ app.post('/admin/phones', async (req, res, next) => {
 
 
 // GET ONE RECORD
-app.get('/admin/phones/:id',
+app.get('/admin/tags/:id',
 //  verifyAdminToken, 
  async (req, res, next) => {
     
@@ -90,7 +90,7 @@ app.get('/admin/phones/:id',
     }
 
     try {
-        let results = await PHONE_MODEL.getOne(params);
+        let results = await TAG_MODEL.getOne(params);
             if(results.length == 0){
                return API_RESPONSE.send(res, {
                     'status': 400,
@@ -117,14 +117,14 @@ app.get('/admin/phones/:id',
 });
 
 // GET RECORDS
-app.get('/admin/phones', 
+app.get('/admin/tags', 
 // verifyAdminToken, 
 async (req, res, next) => {
 
     let params = await QUERY_HELPER.prepare(req);
 
     try {
-        let results = await PHONE_MODEL.get(params);
+        let results = await TAG_MODEL.get(params);
         
         API_RESPONSE.send(res, {
             'status': 200,
@@ -143,15 +143,15 @@ async (req, res, next) => {
 
 
 // UPDATE RECORD
-app.put('/admin/phones/:id', 
+app.put('/admin/tags/:id', 
 // verifyAdminToken, 
 async (req, res, next) => {
 
     let params = {};
     params.body = req.body;
-    let phones_id = parseInt( req.params.id || 0);
+    let tags_id = parseInt( req.params.id || 0);
     params.conditions = {
-        "id": phones_id
+        "id": tags_id
     }
 
     if ( !params.conditions.id ) {
@@ -165,10 +165,10 @@ async (req, res, next) => {
     
     try {
         // Preparations
-        params.setSql = await PHONE_MODEL.prepareUpdate(params);
+        params.setSql = await TAG_MODEL.prepareUpdate(params);
         
         // Perform Query
-        let results = await PHONE_MODEL.update(params);
+        let results = await TAG_MODEL.update(params);
         
         API_RESPONSE.send(res, {
             'status': 200,
@@ -190,7 +190,7 @@ async (req, res, next) => {
 
 
 // DELETE RECORD
-app.delete('/admin/phones/:id', 
+app.delete('/admin/tags/:id', 
 // verifyAdminToken, 
 async (req, res, next) => {
 
@@ -200,10 +200,10 @@ async (req, res, next) => {
     
     try {
          // Preparations
-         params.deleteSql = await PHONE_MODEL.prepareDelete(params);
+         params.deleteSql = await TAG_MODEL.prepareDelete(params);
 
         // Perform Query
-        let results = await PHONE_MODEL.delete(params);
+        let results = await TAG_MODEL.delete(params);
             console.log(results)
         API_RESPONSE.send(res, {
             'status': 200,

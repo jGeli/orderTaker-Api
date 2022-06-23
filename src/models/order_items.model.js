@@ -122,7 +122,7 @@ class Order_itemModel extends CoreModel {
     }
 
     static async get(params) {
-        console.log('from get: ' + this.getModelName() )
+        console.log('from get:' + this.getModelName() )
         let results = null;
         let clause = {
             table: 'order_items',

@@ -29,7 +29,7 @@ exports.up = function(db, callback) {
           length: 10 
       },
 
-      customer_id: {      
+      customers_id: {      
         type: 'int',
         unsigned: true,
         length: 10   },
@@ -38,7 +38,8 @@ exports.up = function(db, callback) {
         unsigned: true,
         length: 10   },
       notes: 'string',
-      deleted_at: { type: 'datetime'}      
+      deleted_at: { type: 'datetime'} ,
+      created_at: {type: 'timestamp'} 
 
     }),
   ], callback)

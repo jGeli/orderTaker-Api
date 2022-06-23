@@ -7,6 +7,7 @@
     "password": "",
     "multipleStatements": true
   },
+  "sql-file": true,
   "qa": {
     "driver": "sqlite3",
     "filename": ":memory:"

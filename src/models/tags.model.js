@@ -2,11 +2,11 @@ const { uniq, isUndefined } = require("lodash");
 const CoreModel = require("../../core/model");
 const TEXT_HELPER = require('../helpers/text');
 const moment = require('moment');
-let phoneSchema = require('../schemas/phones-schema.json');
+let tagSchema = require('../schemas/tag-schema.json');
 
 
 
-class PhoneModel extends CoreModel {
+class TagModel extends CoreModel {
 
     static async save(params) {
         console.log('from save: ' + this.getModelName(), params )
@@ -22,7 +22,7 @@ class PhoneModel extends CoreModel {
         // Let's BEGIN our query builder here.
 
         try {
-            let query = `INSERT INTO phones (${params.insertSql.INSERT}) VALUES(${params.insertSql.VALUES})`;
+            let query = `INSERT INTO tags (${params.insertSql.INSERT}) VALUES(${params.insertSql.VALUES})`;
 
              results = await this.dbExecute(query, params.insertSql.replacements);
              
@@ -68,7 +68,7 @@ class PhoneModel extends CoreModel {
         // Let's BEGIN our query builder here.
         try {
             let query = `
-                UPDATE phones SET 
+                UPDATE tags SET 
                 ${params.setSql.SET}
                 WHERE deleted_at IS NULL
                 ${conditionsSql}
@@ -105,7 +105,7 @@ class PhoneModel extends CoreModel {
             let query = `
                 SELECT 
                 ${select}
-                FROM phones
+                FROM tags
                 WHERE deleted_at IS NULL
                 ${conditionsSql}
                 LIMIT 1
@@ -125,7 +125,7 @@ class PhoneModel extends CoreModel {
         console.log('from get: ' + this.getModelName() )
         let results = null;
         let clause = {
-            table: 'phones',
+            table: 'tags',
             select: params.fields || '*',
             join: '',
             where: 'deleted_at IS NULL'
@@ -174,7 +174,7 @@ class PhoneModel extends CoreModel {
         // Let's BEGIN our query builder here.
         try {
             let query = `
-                UPDATE phones SET 
+                UPDATE tags SET 
                 ${params.deleteSql.SET}
                 WHERE deleted_at IS NULL AND
                 id = ?
@@ -199,7 +199,7 @@ class PhoneModel extends CoreModel {
         };
         let columns = params.body;
         for (let colname in columns) {
-            if ( !phoneSchema.updateColums.includes(colname) )
+            if ( !tagSchema.updateColums.includes(colname) )
             continue;
             setSql.SET += setSql.SET ?  ' ,' + colname + ' = ?': colname + ' = ?'
             setSql.replacements.push(columns[colname]);
@@ -240,7 +240,7 @@ class PhoneModel extends CoreModel {
         let columns = params.body;
 
         for (let colname in columns) {
-            if ( !phoneSchema.createColums.includes(colname) )
+            if ( !tagSchema.createColums.includes(colname) )
             continue;
 
 
@@ -266,10 +266,10 @@ class PhoneModel extends CoreModel {
     }
 
     static async getModelName() {
-        return "Phones Model"
+        return "Tags Model"
     }
 
 
 }
 
-module.exports = PhoneModel
+module.exports = TagModel

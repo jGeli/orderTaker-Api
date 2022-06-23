@@ -32,9 +32,20 @@ exports.up = function(db, callback) {
       email_address: 'string',
       address: 'string',
       limit: 'string',
-      paid_at: { type: 'datetime'},
-      deleted_at: { type: 'datetime'},
-      notes: 'string'
+      notes: 'string',
+      business_id: {      
+        type: 'int',
+        unsigned: true,
+        length: 10 
+    },
+      phones_id: {      
+        type: 'int',
+        unsigned: true,
+        length: 10 
+    },
+    created_at: {type: 'timestamp'},
+    paid_at: { type: 'datetime'},
+    deleted_at: { type: 'datetime'}
     }),
   ], callback)
 };
