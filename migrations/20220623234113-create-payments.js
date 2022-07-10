@@ -17,9 +17,6 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER
       },
-      notes: {
-        type: Sequelize.STRING
-      },
       createdBy: {
         type: Sequelize.STRING
       },

@@ -17,10 +17,16 @@ module.exports = (sequelize, Sequelize) => {
     description: Sequelize.STRING,
     type: Sequelize.STRING,
     amount: Sequelize.INTEGER,
-    notes: Sequelize.STRING,
+    createdBy: Sequelize.STRING,
     deletedAt: {
       allowNull: true,
-      type: Sequelize.DATE}
+      type: Sequelize.DATE},
+    createdAt: {
+      allowNull: true,
+      type: Sequelize.DATE},
+    updatedAt: {
+      allowNull: true,
+      type: Sequelize.DATE},
  
   }, {
     sequelize,
