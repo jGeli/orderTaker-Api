@@ -26,16 +26,16 @@ module.exports = (sequelize, Sequelize) => {
   });
 
 
-  products.associate = function (models) {
-    products.belongsToMany(models.variants, {
-      through: 'product_variant_table',
-      foreignKey: 'productId', as: "product"  
-    });
-  products.belongsTo(models.inventory, {
-    foreignKey: 'inventoryId', as: "inventory"
-  });
+//   products.associate = function (models) {
+//     products.belongsToMany(models.variants, {
+//       through: 'product_variant_table',
+//       foreignKey: 'productId', as: "product"  
+//     });
+//   products.belongsTo(models.inventory, {
+//     foreignKey: 'inventoryId', as: "inventory"
+//   });
 
-};
+// };
 
   return products;
 };
