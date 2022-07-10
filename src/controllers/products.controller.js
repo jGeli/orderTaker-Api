@@ -7,10 +7,10 @@ const Op = db.Sequelize.Op;
 exports.createRecord = async (req, res) => {
 
   Products.create(req.body)
+  console.log(req.body)
     .then(product => {
         console.log(product)
-      res.send({ message: "Products was created successfully!" });
- 
+      res.send({ message: "Product was created successfully!" });
     })
     .catch(err => {
       console.log(err)

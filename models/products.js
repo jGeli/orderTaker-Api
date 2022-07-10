@@ -19,7 +19,8 @@ module.exports = (sequelize, Sequelize) => {
     inStock: Sequelize.INTEGER,
     price: Sequelize.INTEGER,
     sale_price: Sequelize.INTEGER,
-    featured_image: Sequelize.STRING
+    featured_image: Sequelize.STRING,
+    code: Sequelize.STRING
   }, {
     sequelize,
     modelName: 'products',

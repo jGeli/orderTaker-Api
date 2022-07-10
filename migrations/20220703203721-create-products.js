@@ -26,6 +26,9 @@ module.exports = {
       featured_image: {
         type: Sequelize.STRING
       },
+      code: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
