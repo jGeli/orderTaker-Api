@@ -7,9 +7,9 @@ const app = new EXPRESS()
 
 const db = require('./models');
 
-// db.sequelize.sync({
-//     force: true
-// });
+db.sequelize.sync({
+    force: true
+});
 
 
 moment.tz.setDefault('Asia/Manila')

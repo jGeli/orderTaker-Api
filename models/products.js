@@ -20,11 +20,23 @@ module.exports = (sequelize, Sequelize) => {
     price: Sequelize.INTEGER,
     sale_price: Sequelize.INTEGER,
     featured_image: Sequelize.STRING,
-    code: Sequelize.STRING
+    code: Sequelize.STRING,
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
   }, {
     sequelize,
     modelName: 'products',
   });
+
+      products.belongsTo(models.businesses, {
+        foreignKey: 'businessId'
+      });
 
 
 //   products.associate = function (models) {

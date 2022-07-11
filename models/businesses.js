@@ -29,5 +29,18 @@ module.exports = (sequelize, Sequelize) => {
     modelName: 'businesses',
   });
 
+
+  businesses.associate = function (models) {
+    businesses.hasMany(models.users, {
+      foreignKey: "businessId",
+    });
+  businesses.hasMany(models.products, {
+      foreignKey: "businessId"   
+    });
+
+
+
+
   return businesses;
 };
+}
