@@ -75,7 +75,6 @@ exports.getAllRecords = async (req, res) => {
 exports.getRecordById = async (req, res) => {
     const { id } = req.params;
 
-
     Users.findByPk(id, {where: { deletedAt: {
       [Op.ne]: null
     }
@@ -123,9 +122,6 @@ exports.suspendUser = (req, res) => {
   })
 
 }
-
-
-
 
 exports.activateUser = (req, res) => {
   const {id} = req.params;

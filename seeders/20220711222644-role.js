@@ -4,25 +4,20 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.bulkInsert('roles',[
+        queryInterface.bulkInsert('role',[
           {
             id: 1,
-            name: 'super',
-            note: 'geli'
+            role_name: 'admin',
+            role_description: 'admin only',
         },{
-          id: 2,
-          name: 'cashier',
-          note: 'esperas'
+            userId: 2,
+            role_name: 'super',
+            role_description: 'all access permission',
       },{
-        id: 3,
-        name: 'user',
-        note: 'anonym'
+            userId: 3,
+            role_name: 'cashier',
+            role_description: 'cashier only',
     },
-    {
-      id: 4,
-      name: 'admin',
-      note: 'geli'
-  }
       ])
       ])
     })
@@ -40,14 +35,8 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     return queryInterface.sequelize.transaction(t => {
       return Promise.all([
-        queryInterface.bulkDelete('roles', null, {})
+        queryInterface.bulkDelete('role', null, {})
       ])
     })
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
   }
 };
