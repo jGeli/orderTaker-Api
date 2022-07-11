@@ -7,13 +7,19 @@ module.exports = {
         queryInterface.bulkInsert('user_roles',[
           {
             userId: 1,
-            roleId: 4
+            roleId: 4,
+            createdAt: new Date,
+            updatedAt: new Date
         },{
             userId: 2,
-            roleId: 4
+            roleId: 4,
+            createdAt: new Date,
+            updatedAt: new Date
       },{
             userId: 3,
-            roleId: 1
+            roleId: 1,
+            createdAt: new Date,
+            updatedAt: new Date
     },
       ])
       ])
